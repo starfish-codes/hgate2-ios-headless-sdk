@@ -1,0 +1,10 @@
+disabled_rules:
+  - identifier_name
+  - nesting
+
+excluded:
+  - Hellgate iOS SDKTests/
+  - Package.swift
+  - Carthage
+  - Pods
+  - resource_bundle_accessor.swift
