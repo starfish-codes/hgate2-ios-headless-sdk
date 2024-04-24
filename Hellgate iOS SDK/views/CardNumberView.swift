@@ -19,6 +19,9 @@ public struct CardNumberView: View {
     var image: ImagePosition
     var padding: CGFloat
     
+    var onBegin: (() -> Void)?
+    var onEnd: (() -> Void)?
+
     public enum ComponentState {
         case complete
         case incomplete
@@ -35,11 +38,15 @@ public struct CardNumberView: View {
     public init(
         state: Binding<ComponentState>,
         image: ImagePosition,
-        padding: CGFloat = 0
+        padding: CGFloat = 0,
+        onBegin: (() -> Void)? = nil,
+        onEnd: (() -> Void)? = nil
     ) {
         self._state = state
         self.image = image
         self.padding = padding
+        self.onBegin = onBegin
+        self.onEnd = onEnd
     }
     
     public var body: some View {
@@ -60,7 +67,9 @@ public struct CardNumberView: View {
                 foregroundColor: color(state: self.state),
                 backgroundColor: .white,
                 keyboardType: .numberPad,
-                formatter: CardNumberFormatter()
+                formatter: CardNumberFormatter(),
+                onBegin: onBegin,
+                onEnd: onEnd
             )
             .padding(self.padding)
             .onChange(of: value) { value in
