@@ -1,10 +1,3 @@
-//
-//  Hellgate_iOS_SDK.h
-//  Hellgate iOS SDK
-//
-//  Created by Edward Addley on 22/04/2024.
-//
-
 #import <Foundation/Foundation.h>
 
 //! Project version number for Hellgate_iOS_SDK.

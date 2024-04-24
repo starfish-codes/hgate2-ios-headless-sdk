@@ -17,8 +17,9 @@
 		4DA7F0252BD6B4A200F51547 /* CardNumberFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7F0242BD6B4A200F51547 /* CardNumberFormatterTests.swift */; };
 		4DA7F0272BD7A1CB00F51547 /* WrappedUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7F0262BD7A1CB00F51547 /* WrappedUITextField.swift */; };
 		4DA7F0292BD7AE4800F51547 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DA7F0282BD7AE4800F51547 /* Media.xcassets */; };
-		4DA7F02B2BD7B88100F51547 /* CardBrands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7F02A2BD7B88100F51547 /* CardBrands.swift */; };
-		4DA7F02D2BD7D83D00F51547 /* CardBrandsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7F02C2BD7D83D00F51547 /* CardBrandsTests.swift */; };
+		4DA7F02B2BD7B88100F51547 /* CardBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7F02A2BD7B88100F51547 /* CardBrand.swift */; };
+		4DA7F02D2BD7D83D00F51547 /* CardBrandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7F02C2BD7D83D00F51547 /* CardBrandTests.swift */; };
+		4DA7F02F2BD936CC00F51547 /* CardBrand+BrandDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7F02E2BD936CC00F51547 /* CardBrand+BrandDetails.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,8 +44,9 @@
 		4DA7F0242BD6B4A200F51547 /* CardNumberFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardNumberFormatterTests.swift; sourceTree = "<group>"; };
 		4DA7F0262BD7A1CB00F51547 /* WrappedUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedUITextField.swift; sourceTree = "<group>"; };
 		4DA7F0282BD7AE4800F51547 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
-		4DA7F02A2BD7B88100F51547 /* CardBrands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBrands.swift; sourceTree = "<group>"; };
-		4DA7F02C2BD7D83D00F51547 /* CardBrandsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBrandsTests.swift; sourceTree = "<group>"; };
+		4DA7F02A2BD7B88100F51547 /* CardBrand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBrand.swift; sourceTree = "<group>"; };
+		4DA7F02C2BD7D83D00F51547 /* CardBrandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBrandTests.swift; sourceTree = "<group>"; };
+		4DA7F02E2BD936CC00F51547 /* CardBrand+BrandDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardBrand+BrandDetails.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +103,7 @@
 			children = (
 				4DA7F0222BD6B17A00F51547 /* CardUtilsTests.swift */,
 				4DA7F0242BD6B4A200F51547 /* CardNumberFormatterTests.swift */,
-				4DA7F02C2BD7D83D00F51547 /* CardBrandsTests.swift */,
+				4DA7F02C2BD7D83D00F51547 /* CardBrandTests.swift */,
 			);
 			path = "Hellgate iOS SDKTests";
 			sourceTree = "<group>";
@@ -120,7 +122,8 @@
 			isa = PBXGroup;
 			children = (
 				4DA7F0202BD6AFDE00F51547 /* CardUtils.swift */,
-				4DA7F02A2BD7B88100F51547 /* CardBrands.swift */,
+				4DA7F02A2BD7B88100F51547 /* CardBrand.swift */,
+				4DA7F02E2BD936CC00F51547 /* CardBrand+BrandDetails.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -240,7 +243,8 @@
 				4DA7F0272BD7A1CB00F51547 /* WrappedUITextField.swift in Sources */,
 				4DA7EFD52BD69B2F00F51547 /* CardNumberView.swift in Sources */,
 				4DA7EFD72BD6A08800F51547 /* CardNumberFormatter.swift in Sources */,
-				4DA7F02B2BD7B88100F51547 /* CardBrands.swift in Sources */,
+				4DA7F02F2BD936CC00F51547 /* CardBrand+BrandDetails.swift in Sources */,
+				4DA7F02B2BD7B88100F51547 /* CardBrand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,7 +254,7 @@
 			files = (
 				4DA7F0232BD6B17A00F51547 /* CardUtilsTests.swift in Sources */,
 				4DA7F0252BD6B4A200F51547 /* CardNumberFormatterTests.swift in Sources */,
-				4DA7F02D2BD7D83D00F51547 /* CardBrandsTests.swift in Sources */,
+				4DA7F02D2BD7D83D00F51547 /* CardBrandTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

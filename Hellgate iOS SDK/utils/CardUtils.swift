@@ -1,3 +1,5 @@
+import Foundation
+
 func isValidLUHN(_ cardNumber: String) -> Bool {
     guard cardNumber.isEmpty == false else { return false }
         
