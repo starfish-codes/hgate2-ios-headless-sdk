@@ -1,10 +1,21 @@
 import SwiftUI
 
 public struct CardNumberView: View {
-    @State var cardBrand: CardBrand = .unknown
+    private enum Constant {
+        static let PLACEHOLDER_TEXT = "Card number"
+
+        static let INTERNAL_PADDING: CGFloat = 4
+        static let INTERNAL_BORDER_RADIUS: CGFloat = 8
+        
+        static let COMPLETE_COLOR = Color.blue
+        static let INVALID_COLOR = Color.red
+        static let DEFAULT_COLOR = Color.black
+    }
     
+    @State private var value: String = ""
+    @State private var cardBrand: CardBrand = .unknown
+
     @Binding var state: ComponentState
-    @Binding var value: String
     var image: ImagePosition
     var padding: CGFloat
     
@@ -23,12 +34,10 @@ public struct CardNumberView: View {
 
     public init(
         state: Binding<ComponentState>,
-        value: Binding<String>,
         image: ImagePosition,
         padding: CGFloat = 0
     ) {
         self._state = state
-        self._value = value
         self.image = image
         self.padding = padding
     }
@@ -37,7 +46,7 @@ public struct CardNumberView: View {
         let imageView = Image(cardBrand.details.icon, bundle: .init(for: CardNumberFormatter.self as AnyClass))
             .resizable()
             .aspectRatio(contentMode: .fit)
-            .padding([.horizontal], 4)
+            .padding([.horizontal], Constant.INTERNAL_PADDING)
         
         return HStack {
             if case .leading = image {
@@ -46,7 +55,7 @@ public struct CardNumberView: View {
 
             WrappedUITextField(
                 value: $value,
-                placeholder: "Card Number",
+                placeholder: Constant.PLACEHOLDER_TEXT,
                 fontSize: 16,
                 foregroundColor: color(state: self.state),
                 backgroundColor: .white,
@@ -56,6 +65,7 @@ public struct CardNumberView: View {
             .padding(self.padding)
             .onChange(of: value) { value in
                 self.cardBrand = CardBrand.first(from: value)
+
                 #if DEBUG
                 print("Value: \(self.value) -> \(value), brand: \(self.cardBrand)")
                 #endif
@@ -73,9 +83,9 @@ public struct CardNumberView: View {
     
     private func color(state: ComponentState) -> Color {
         switch state {
-        case .complete: .blue
-        case .incomplete, .blank: .black
-        case .invalid: .red
+        case .complete: Constant.COMPLETE_COLOR
+        case .incomplete, .blank: Constant.DEFAULT_COLOR
+        case .invalid: Constant.INVALID_COLOR
         }
     }
     
@@ -109,16 +119,13 @@ extension CardNumberView {
     public func border() -> some View {
         self
             .overlay(
-            RoundedRectangle(cornerRadius: 8)
+                RoundedRectangle(cornerRadius: Constant.INTERNAL_BORDER_RADIUS)
                 .stroke(.secondary)
         )
     }
 }
 
 #Preview {
-    
-    var data = "1234123412341234"
-    let bind = Binding { data } set: { value in data = value }
     
     var defaultState = CardNumberView.ComponentState.blank
     let defaultStateBind = Binding { defaultState } set: { state in defaultState = state }
@@ -133,57 +140,48 @@ extension CardNumberView {
         Text("Default")
         CardNumberView(
             state: defaultStateBind,
-            value: bind,
             image: .leading
         )
         
         CardNumberView(
             state: defaultStateBind,
-            value: bind,
             image: .trailing
         )
         
         CardNumberView(
             state: defaultStateBind,
-            value: bind,
             image: .hidden
         )
         
         Text("Default - Complete")
         CardNumberView(
             state: completStateBind,
-            value: bind,
             image: .leading
         )
         
         CardNumberView(
             state: completStateBind,
-            value: bind,
             image: .trailing
         )
         
         CardNumberView(
             state: completStateBind,
-            value: bind,
             image: .hidden
         )
         
         Text("Default - Invalid")
         CardNumberView(
             state: inValidStateBind,
-            value: bind,
             image: .leading
         )
         
         CardNumberView(
             state: inValidStateBind,
-            value: bind,
             image: .trailing
         )
         
         CardNumberView(
             state: inValidStateBind,
-            value: bind,
             image: .hidden
         )
         
@@ -191,21 +189,18 @@ extension CardNumberView {
         
         CardNumberView(
             state: defaultStateBind,
-            value: bind,
             image: .leading
         )
         .border()
         
         CardNumberView(
             state: defaultStateBind,
-            value: bind,
             image: .trailing
         )
         .border()
         
         CardNumberView(
             state: defaultStateBind,
-            value: bind,
             image: .hidden
         )
         .border()
