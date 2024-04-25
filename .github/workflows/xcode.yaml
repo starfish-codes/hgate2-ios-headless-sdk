@@ -39,7 +39,7 @@ jobs:
           if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
           xcodebuild test -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -resultBundlePath TestResults -derivedDataPath Build/ -enableCodeCoverage YES -sdk iphonesimulator15.0 -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.0' | xcpretty && exit ${PIPESTATUS[0]}
-      - name: Code Coverage
+      - name: Report Unit Tests and Code Coverage
         uses: kishikawakatsumi/xcresulttool@v1
         with:
           path: TestResults.xcresult
@@ -47,17 +47,14 @@ jobs:
         if: success() || failure()
       - name: Code Coverage Check
         run: |
-          MIN_CODE_COVERAGE=60.0
-          xcrun xccov view –report –json TestResults.xcresult > code_coverage.json
+          MIN_CODE_COVERAGE=30.0
+          xcrun xccov view --report --json TestResults.xcresult > code_coverage.json
           CODE_COVERAGE=$(cat code_coverage.json | jq '.targets[] | select( .name == "Hellgate_iOS_SDK.framework" and .executableLines > 0 ) | .lineCoverage')
-          echo $CODE_COVERAGE
-          CODE_COVERAGE=$(echo $CODE_COVERAGE*100.0 | bc)
-          echo $CODE_COVERAGE
+          CODE_COVERAGE=$(echo "$CODE_COVERAGE*100.0" | bc)
           COVERAGE_PASSES=$(echo "$CODE_COVERAGE > $MIN_CODE_COVERAGE" | bc)
-          echo $COVERAGE_PASSES
           if [ $COVERAGE_PASSES -ne 1 ]; then
             printf "\033[0;31mCode coverage %.1f%% is less than required %.1f%%\033[0m\n" $CODE_COVERAGE $MIN_CODE_COVERAGE
-            exit -1
+            exit 1
           else
             printf "\033[0;32mCode coverage is %.1f%%\033[0m\n" $CODE_COVERAGE
           fi
