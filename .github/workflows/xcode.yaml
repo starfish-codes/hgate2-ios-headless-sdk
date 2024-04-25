@@ -20,6 +20,8 @@ jobs:
           default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
           echo $default | cat >default
           echo Using default scheme: $default
+          echo Switching to Xcode 13.1 for iOS 15 Simulators
+          sudo xcode-select -s /Applications/Xcode_13.1.app
       - name: Build
         env:
           scheme: ${{ 'default' }}
@@ -35,4 +37,4 @@ jobs:
           if [ $scheme = default ]; then scheme=$(cat default); fi
           if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
-          xcodebuild test -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.0' | xcpretty && exit ${PIPESTATUS[0]}
+          xcodebuild test -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -sdk iphonesimulator15.0 -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.0' | xcpretty && exit ${PIPESTATUS[0]}
