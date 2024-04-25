@@ -92,9 +92,9 @@ public struct CardNumberView: View {
     
     private func color(state: ComponentState) -> Color {
         switch state {
-        case .complete: Constant.COMPLETE_COLOR
-        case .incomplete, .blank: Constant.DEFAULT_COLOR
-        case .invalid: Constant.INVALID_COLOR
+        case .complete: return Constant.COMPLETE_COLOR
+        case .incomplete, .blank: return Constant.DEFAULT_COLOR
+        case .invalid: return Constant.INVALID_COLOR
         }
     }
     
