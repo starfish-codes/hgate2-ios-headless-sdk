@@ -45,3 +45,15 @@ jobs:
           path: TestResults.xcresult
           upload-bundles: never
         if: success() || failure()
+      - name: Code Coverage Check
+        run:
+          xcrun xccov view –report –json TestResults.xcresult > code_coverage.json
+          CODE_COVERAGE=$(cat code_coverage.json | jq '.targets[] | select( .name == "Hellgate_iOS_SDK.framework" and .executableLines > 0 ) | .lineCoverage')
+          CODE_COVERAGE=$(echo $CODE_COVERAGE*100.0 | bc)
+          COVERAGE_PASSES=$(echo "$CODE_COVERAGE > 60.0" | bc)
+          if [ $COVERAGE_PASSES -ne 1 ]; then
+            printf "\033[0;31mCode coverage %.1f%% is less than required %.1f%%\033[0m\n" $CODE_COVERAGE $MIN_CODE_COVERAGE
+            exit -1
+          else
+            printf "\033[0;32mCode coverage is %.1f%%\033[0m\n" $CODE_COVERAGE
+          fi
