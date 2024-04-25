@@ -42,4 +42,5 @@ jobs:
         uses: kishikawakatsumi/xcresulttool@v1
         with:
           path: TestResults.xcresult
+          upload-bundles: never
         if: success() || failure()
