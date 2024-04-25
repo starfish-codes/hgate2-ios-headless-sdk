@@ -28,4 +28,17 @@ final class CardNumberFormatterTests: XCTestCase {
         XCTAssertEqual(formatter.string(for: "123412341234123X"), nil)
 
     }
+
+    func test_Given_FormattedCardNumber_When_ReturningOriginalString_Then_ReturnStringWithNoSpaces() {
+        let formatter = CardNumberFormatter()
+
+        var result: String? = String()
+        result = withUnsafeMutablePointer(to: &result) { mut in
+            let object = AutoreleasingUnsafeMutablePointer<AnyObject?>(mut)
+            _ = formatter.getObjectValue(object, for: "1234 1234 1234 1234", errorDescription: nil)
+            return object.pointee as? String
+        }
+
+        XCTAssertEqual(result, "1234123412341234")
+    }
 }

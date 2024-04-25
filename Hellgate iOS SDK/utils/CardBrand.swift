@@ -56,16 +56,16 @@ extension BrandDetails {
     }
 
     private func variableMaxLength(for cardNumber: String) -> Int? {
-        variantMaxLength.map { key, value in
+        variantMaxLength.compactMap { key, value in
             let range = NSRange(location: 0, length: cardNumber.lengthOfBytes(using: .utf8))
             guard let regex = try? NSRegularExpression(pattern: key) else {
-                return 0
+                return nil
             }
 
             if regex.firstMatch(in: cardNumber, range: range) != nil {
                 return value
             } else {
-                return 0
+                return nil
             }
         }.max()
     }
