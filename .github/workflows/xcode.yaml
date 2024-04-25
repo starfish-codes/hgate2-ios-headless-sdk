@@ -46,7 +46,7 @@ jobs:
           upload-bundles: never
         if: success() || failure()
       - name: Code Coverage Check
-        run:
+        run: |
           xcrun xccov view –report –json TestResults.xcresult > code_coverage.json
           CODE_COVERAGE=$(cat code_coverage.json | jq '.targets[] | select( .name == "Hellgate_iOS_SDK.framework" and .executableLines > 0 ) | .lineCoverage')
           CODE_COVERAGE=$(echo $CODE_COVERAGE*100.0 | bc)
