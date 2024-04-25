@@ -11,7 +11,7 @@ final class CardUtilsTests: XCTestCase {
         let cardNumber = "1234567890123456"
         XCTAssertFalse(isValidLUHN(cardNumber))
     }
-    
+
     func test_Given_InvalidNumberWithDigits_When_LUHNValidated_Then_Invalid() throws {
         let cardNumber = "12345b789012345a"
         XCTAssertFalse(isValidLUHN(cardNumber))

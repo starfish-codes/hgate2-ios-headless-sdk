@@ -7,21 +7,19 @@ class CardNumberFormatter: Formatter {
         guard string.trimmingCharacters(in: .whitespacesAndNewlines).allSatisfy({ $0.isNumber }) else { return nil }
 
         var pattern = [4, 8, 12]
-        
+
         if string.count == 14 || string.count == 15 {
             pattern = [4, 10]
         }
-        
+
         var result = string
-        for index in pattern.reversed() {
-            if index < result.count {
-                result.insert(" ", at: result.index(result.startIndex, offsetBy: index))
-            }
+        for index in pattern.reversed() where index < result.count {
+            result.insert(" ", at: result.index(result.startIndex, offsetBy: index))
         }
-        
+
         return result
     }
-    
+
     override func getObjectValue(
         _ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?,
         for string: String,

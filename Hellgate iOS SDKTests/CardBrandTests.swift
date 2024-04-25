@@ -12,7 +12,7 @@ final class CardBrandTests: XCTestCase {
         let visaNumber = "4"
         XCTAssertEqual(CardBrand.first(from: visaNumber), .visa)
     }
-    
+
     func test_Given_InvalidVisaNumber_When_PatternMatching_Then_MatchWithUnknown() {
         let visaNumber = "412341234123412a"
         XCTAssertEqual(CardBrand.first(from: visaNumber), .unknown)
