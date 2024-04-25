@@ -134,6 +134,8 @@ extension CardNumberView {
     }
 }
 
+#if swift(>=5.9)
+
 #Preview {
     
     var defaultState = CardNumberView.ComponentState.blank
@@ -215,3 +217,5 @@ extension CardNumberView {
         .border()
     }
 }
+
+#endif

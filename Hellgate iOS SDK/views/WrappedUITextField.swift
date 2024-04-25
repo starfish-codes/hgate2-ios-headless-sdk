@@ -157,6 +157,8 @@ public struct WrappedUITextField: UIViewRepresentable {
     }
 }
 
+#if swift(>=5.9)
+
 #Preview {
     
     var data = "12341234123"
@@ -176,3 +178,5 @@ public struct WrappedUITextField: UIViewRepresentable {
         formatter: CardNumberFormatter()
     )
 }
+
+#endif
