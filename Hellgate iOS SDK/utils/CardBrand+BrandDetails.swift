@@ -5,7 +5,7 @@ extension CardBrand {
     var details: BrandDetails {
         switch self {
         case .visa:
-            BrandDetails(
+            return BrandDetails(
                 code: "visa",
                 displayName: "Visa",
                 icon: "visa",
@@ -14,7 +14,7 @@ extension CardBrand {
                 renderingOrder: 1
             )
         case .masterCard:
-            BrandDetails(
+            return BrandDetails(
                 code: "mastercard",
                 displayName: "Mastercard",
                 icon: "mastercard",
@@ -26,7 +26,7 @@ extension CardBrand {
                 renderingOrder: 2
             )
         case .americanExpress:
-            BrandDetails(
+            return BrandDetails(
                 code: "amex",
                 displayName: "Amercan Express",
                 icon: "american-express",
@@ -36,7 +36,7 @@ extension CardBrand {
                 renderingOrder: 3
             )
         case .discover:
-            BrandDetails(
+            return BrandDetails(
                 code: "discover",
                 displayName: "Discover",
                 icon: "discover",
@@ -45,7 +45,7 @@ extension CardBrand {
                 renderingOrder: 4
             )
         case .jcb:
-            BrandDetails(
+            return BrandDetails(
                 code: "jcb",
                 displayName: "JCB",
                 icon: "jcb",
@@ -58,7 +58,7 @@ extension CardBrand {
                 renderingOrder: 5
             )
         case .dinersClub:
-            BrandDetails(
+            return BrandDetails(
                 code: "diner",
                 displayName: "Diners Club",
                 icon: "diners-club",
@@ -68,7 +68,7 @@ extension CardBrand {
                 renderingOrder: 6
             )
         case .unionPay:
-            BrandDetails(
+            return BrandDetails(
                 code: "unionpay",
                 displayName: "UnionPay",
                 icon: "unionpay",
@@ -77,7 +77,7 @@ extension CardBrand {
                 renderingOrder: 7
             )
         case .cartesBancaires:
-            BrandDetails(
+            return BrandDetails(
                 code: "cartes_bancaires",
                 displayName: "Cartes Bancaires",
                 icon: "credit-card",
@@ -93,7 +93,7 @@ extension CardBrand {
                 renderingOrder: 8
             )
         case .unknown:
-            BrandDetails(
+            return BrandDetails(
                 code: "unknown",
                 displayName: "unknown",
                 icon: "credit-card",

@@ -27,7 +27,7 @@ class CardNumberFormatter: Formatter {
         for string: String,
         errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?
     ) -> Bool {
-        if let obj {
+        if let obj = obj {
             obj.pointee = string.replacingOccurrences(of: " ", with: "") as AnyObject
             return true
         }
