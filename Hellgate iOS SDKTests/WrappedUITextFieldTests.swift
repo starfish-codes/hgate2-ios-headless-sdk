@@ -20,7 +20,7 @@ final class WrappedUITextFieldTests: XCTestCase {
 
         coordinator.textFieldDidBeginEditing(UITextField())
 
-        wait(for: [exp])
+        wait(for: [exp], timeout: 1)
     }
 
     func test_Given_Textfield_When_ReceiveEnd_Then_OnEndCalled() throws {
@@ -39,7 +39,7 @@ final class WrappedUITextFieldTests: XCTestCase {
 
         coordinator.textFieldDidEndEditing(UITextField())
 
-        wait(for: [exp])
+        wait(for: [exp], timeout: 1)
     }
 
     func test_Given_Textfield_When_DonebuttonTapped_Then_OnResignCalled() throws {
@@ -59,7 +59,7 @@ final class WrappedUITextFieldTests: XCTestCase {
 
         coordinator.tappedDoneButton(.init())
 
-        wait(for: [exp])
+        wait(for: [exp], timeout: 1)
     }
 
     func test_Given_Textfield_When_ReceiveChanges_Then_UpdateValue() throws {
