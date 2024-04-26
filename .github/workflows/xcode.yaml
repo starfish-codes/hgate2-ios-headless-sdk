@@ -1,0 +1,60 @@
+name: Xcode - Build and Test
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+  pull_request:
+    branches: [ "main", "feature/**", "develop", "hotfix/**" ]
+
+jobs:
+  build:
+    name: Build and analyse default scheme using xcodebuild command
+    permissions: write-all
+    runs-on: macos-12
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set Default Scheme
+        run: |
+          scheme_list=$(xcodebuild -list -json | tr -d "\n")
+          default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
+          echo $default | cat >default
+          echo Using default scheme: $default
+          echo Switching to Xcode 13.1 for iOS 15 Simulators
+          sudo xcode-select -s /Applications/Xcode_13.1.app
+      - name: Build
+        env:
+          scheme: ${{ 'default' }}
+        run: |
+          if [ $scheme = default ]; then scheme=$(cat default); fi
+          if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
+          file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
+          xcodebuild clean build analyze -scheme "$scheme" -"$filetype_parameter" "$file_to_build" | xcpretty && exit ${PIPESTATUS[0]}
+      - name: Test
+        env:
+          scheme: ${{ 'default' }}
+        run: |
+          if [ $scheme = default ]; then scheme=$(cat default); fi
+          if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
+          file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
+          xcodebuild test -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -resultBundlePath TestResults -derivedDataPath Build/ -enableCodeCoverage YES -sdk iphonesimulator15.0 -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.0' | xcpretty && exit ${PIPESTATUS[0]}
+      - name: Report Unit Tests and Code Coverage
+        uses: kishikawakatsumi/xcresulttool@v1
+        with:
+          path: TestResults.xcresult
+          upload-bundles: never
+        if: success() || failure()
+      - name: Code Coverage Check
+        run: |
+          MIN_CODE_COVERAGE=60.0
+          xcrun xccov view --report --json TestResults.xcresult > code_coverage.json
+          CODE_COVERAGE=$(cat code_coverage.json | jq '.targets[] | select( .name == "Hellgate_iOS_SDK.framework" and .executableLines > 0 ) | .lineCoverage')
+          CODE_COVERAGE=$(echo "$CODE_COVERAGE*100.0" | bc)
+          COVERAGE_PASSES=$(echo "$CODE_COVERAGE > $MIN_CODE_COVERAGE" | bc)
+          if [ $COVERAGE_PASSES -ne 1 ]; then
+            printf "\033[0;31mCode coverage %.1f%% is less than required %.1f%%\033[0m\n" $CODE_COVERAGE $MIN_CODE_COVERAGE
+            exit 1
+          else
+            printf "\033[0;32mCode coverage is %.1f%%\033[0m\n" $CODE_COVERAGE
+          fi

@@ -1,7 +1,7 @@
 import SwiftUI
 
 public struct WrappedUITextField: UIViewRepresentable {
-    
+
     @Binding var value: String
     var placeholder: String
     var fontSize: UInt32
@@ -9,10 +9,10 @@ public struct WrappedUITextField: UIViewRepresentable {
     var backgroundColor: Color
     var keyboardType: UIKeyboardType
     var formatter: Formatter
-    
+
     var onBegin: (() -> Void)?
     var onEnd: (() -> Void)?
-    
+
     public init(
         value: Binding<String>,
         placeholder: String,
@@ -44,10 +44,10 @@ public struct WrappedUITextField: UIViewRepresentable {
         textField.textColor = UIColor(foregroundColor)
         textField.clearButtonMode = .never
         textField.delegate = context.coordinator
-        
+
         let formatted = self.formatter.string(for: value)
         textField.text = formatted
-        
+
         // Toolbar for keyboard
         let inputView = UIToolbar()
         inputView.sizeToFit()
@@ -63,11 +63,11 @@ public struct WrappedUITextField: UIViewRepresentable {
             )
         ]
         textField.inputAccessoryView = inputView
-        context.coordinator.resign =  { [weak textField] in textField?.resignFirstResponder() }
+        context.coordinator.resign = { [weak textField] in textField?.resignFirstResponder() }
 
         return textField
     }
-    
+
     public func updateUIView(_ uiView: UITextField, context: Self.Context) {
         let textField = uiView
         textField.placeholder = self.placeholder
@@ -76,11 +76,11 @@ public struct WrappedUITextField: UIViewRepresentable {
         textField.textColor = UIColor(foregroundColor)
         textField.clearButtonMode = .never
         context.coordinator.resign = { [weak textField] in textField?.resignFirstResponder() }
-        
+
         let formatted = self.formatter.string(for: textField.text)
         textField.text = formatted ?? textField.text
     }
-    
+
     public func makeCoordinator() -> Coordinator {
         Coordinator(
             value: $value,
@@ -89,16 +89,16 @@ public struct WrappedUITextField: UIViewRepresentable {
             onEnd: onEnd
         )
     }
-    
+
     public class Coordinator: NSObject, UITextFieldDelegate {
-        
+
         @Binding var value: String
-        
+
         var formatter: Formatter
-        var resign: (() -> ())?
+        var resign: (() -> Void)?
         var onBegin: (() -> Void)?
         var onEnd: (() -> Void)?
-        
+
         init(
             value: Binding<String>,
             formatter: Formatter,
@@ -112,33 +112,37 @@ public struct WrappedUITextField: UIViewRepresentable {
             self.onBegin = onBegin
             self.onEnd = onEnd
         }
-        
+
         public func textFieldDidBeginEditing(_ textField: UITextField) {
             onBegin?()
         }
-        
+
         public func textFieldDidEndEditing(_ textField: UITextField) {
             onEnd?()
         }
-        
-        public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-            
+
+        public func textField(
+            _ textField: UITextField,
+            shouldChangeCharactersIn range: NSRange,
+            replacementString string: String
+        ) -> Bool {
+
             var text = textField.text ?? ""
             text = (text as NSString).replacingCharacters(in: range, with: string)
-            
+
             #if DEBUG
             print("Text should change - \(textField.text ?? "NIL") to \(text)")
             #endif
-            
+
             var result = String()
             return withUnsafeMutablePointer(to: &result) { mut in
                 let object = AutoreleasingUnsafeMutablePointer<AnyObject?>(mut)
-                
+
                 if self.formatter.getObjectValue(object, for: text, errorDescription: nil) {
                     #if DEBUG
                     print("Unformat \(mut.pointee) - \(String(describing: object.pointee))")
                     #endif
-                    
+
                     if let formattedText = self.formatter.string(for: object.pointee) {
                         textField.text = formattedText
                         value = object.pointee as? String ?? ""
@@ -150,22 +154,24 @@ public struct WrappedUITextField: UIViewRepresentable {
                 return false
             }
         }
-            
+
         @objc public func tappedDoneButton(_ barButton: UIBarButtonItem) {
             resign?()
         }
     }
 }
 
+#if swift(>=5.9)
+
 #Preview {
-    
+
     var data = "12341234123"
     let bind = Binding {
         data
     } set: { value in
         data = value
     }
-    
+
     return WrappedUITextField(
         value: bind,
         placeholder: "Card Number",
@@ -176,3 +182,5 @@ public struct WrappedUITextField: UIViewRepresentable {
         formatter: CardNumberFormatter()
     )
 }
+
+#endif
