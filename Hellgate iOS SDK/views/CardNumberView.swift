@@ -1,93 +1,62 @@
+import Combine
 import SwiftUI
 
-public struct CardNumberView: View {
-    private enum Constant {
-        static let PLACEHOLDER_TEXT = "Card number"
+private enum Constant {
+    static let PLACEHOLDER_TEXT = "Card number"
 
-        static let INTERNAL_PADDING: CGFloat = 4
-        static let INTERNAL_BORDER_RADIUS: CGFloat = 8
+    static let INTERNAL_PADDING: CGFloat = 4
+    static let INTERNAL_BORDER_RADIUS: CGFloat = 8
 
-        static let COMPLETE_COLOR = Color.blue
-        static let INVALID_COLOR = Color.red
-        static let DEFAULT_COLOR = Color.black
-    }
+    static let COMPLETE_COLOR = Color.blue
+    static let INVALID_COLOR = Color.red
+    static let DEFAULT_COLOR = Color.black
+}
 
-    @State private var value: String = ""
-    @State private var cardBrand: CardBrand = .unknown
+public enum ComponentState {
+    case complete
+    case incomplete
+    case blank
+    case invalid
+}
 
+public class CardNumberViewViewModel: ObservableObject {
     @Binding var state: ComponentState
-    var image: ImagePosition
-    var padding: CGFloat
+    @Published var value: String = ""
+    @Published var color: Color = .black
+    @Published var cardBrand: CardBrand = .unknown
+    private var queue: DispatchQueue
 
-    var onBegin: (() -> Void)?
-    var onEnd: (() -> Void)?
-
-    public enum ComponentState {
-        case complete
-        case incomplete
-        case blank
-        case invalid
-    }
-
-    public enum ImagePosition {
-        case leading
-        case trailing
-        case hidden
-    }
+    var cancellable: AnyCancellable?
 
     public init(
         state: Binding<ComponentState>,
-        image: ImagePosition,
-        padding: CGFloat = 0,
-        onBegin: (() -> Void)? = nil,
-        onEnd: (() -> Void)? = nil
+        value: String,
+        cardBrand: CardBrand,
+        queue: DispatchQueue = .main
     ) {
         self._state = state
-        self.image = image
-        self.padding = padding
-        self.onBegin = onBegin
-        self.onEnd = onEnd
+        self.value = value
+        self.cardBrand = cardBrand
+        self.queue = queue
+
+        cancellable = self.$value
+            .sink { [weak self] newValue in
+            self?.update(value: newValue)
+        }
     }
 
-    public var body: some View {
-        let imageView = Image(cardBrand.details.icon, bundle: .init(for: CardNumberFormatter.self as AnyClass))
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .padding([.horizontal], Constant.INTERNAL_PADDING)
+    private func update(value: String) {
+        queue.async { [weak self] in
+            guard let self = self else { return }
+            self.cardBrand = CardBrand.first(from: value)
 
-        return HStack {
-            if case .leading = image {
-                imageView
-            }
+#if DEBUG
+            print("Value: \(self.value) -> \(value), brand: \(self.cardBrand)")
+#endif
 
-            WrappedUITextField(
-                value: $value,
-                placeholder: Constant.PLACEHOLDER_TEXT,
-                fontSize: 16,
-                foregroundColor: color(state: self.state),
-                backgroundColor: .white,
-                keyboardType: .numberPad,
-                formatter: CardNumberFormatter(),
-                onBegin: onBegin,
-                onEnd: onEnd
-            )
-            .padding(self.padding)
-            .onChange(of: value) { value in
-                self.cardBrand = CardBrand.first(from: value)
-
-                #if DEBUG
-                print("Value: \(self.value) -> \(value), brand: \(self.cardBrand)")
-                #endif
-
-                self.state = state(brand: self.cardBrand, value: value)
-            }
-
-            if case .trailing = image {
-                imageView
-            }
+            self.state = self.state(brand: self.cardBrand, value: value)
+            self.color = self.color(state: self.state)
         }
-        .padding(8)
-        .frame(height: 44)
     }
 
     private func color(state: ComponentState) -> Color {
@@ -124,6 +93,77 @@ public struct CardNumberView: View {
     }
 }
 
+public struct CardNumberView: View {
+    @StateObject private var viewModel: CardNumberViewViewModel
+
+    var image: ImagePosition
+    var padding: CGFloat
+
+    var onBegin: (() -> Void)?
+    var onEnd: (() -> Void)?
+
+    public enum ImagePosition {
+        case leading
+        case trailing
+        case hidden
+    }
+
+    public init(
+        state: Binding<ComponentState>,
+        image: ImagePosition,
+        padding: CGFloat = 0,
+        onBegin: (() -> Void)? = nil,
+        onEnd: (() -> Void)? = nil
+    ) {
+        self._viewModel = StateObject(
+            wrappedValue: CardNumberViewViewModel(
+                state: state,
+                value: "",
+                cardBrand: .unknown
+            )
+        )
+        self.image = image
+        self.padding = padding
+        self.onBegin = onBegin
+        self.onEnd = onEnd
+    }
+
+    public var body: some View {
+        let imageView = Image(
+            viewModel.cardBrand.details.icon,
+            bundle: .init(for: CardNumberFormatter.self as AnyClass)
+        )
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .padding([.horizontal], Constant.INTERNAL_PADDING)
+
+        return HStack {
+            if case .leading = image {
+                imageView
+            }
+
+            WrappedUITextField(
+                value: $viewModel.value,
+                placeholder: Constant.PLACEHOLDER_TEXT,
+                fontSize: 16,
+                foregroundColor: viewModel.color,
+                backgroundColor: .white,
+                keyboardType: .numberPad,
+                formatter: CardNumberFormatter(),
+                onBegin: onBegin,
+                onEnd: onEnd
+            )
+            .padding(self.padding)
+
+            if case .trailing = image {
+                imageView
+            }
+        }
+        .padding(8)
+        .frame(height: 44)
+    }
+}
+
 extension CardNumberView {
     public func border() -> some View {
         self
@@ -138,13 +178,13 @@ extension CardNumberView {
 
 #Preview {
 
-    var defaultState = CardNumberView.ComponentState.blank
+    var defaultState = ComponentState.blank
     let defaultStateBind = Binding { defaultState } set: { state in defaultState = state }
 
-    var completState = CardNumberView.ComponentState.complete
+    var completState = ComponentState.complete
     let completStateBind = Binding { completState } set: { state in completState = state }
 
-    var inValidState = CardNumberView.ComponentState.invalid
+    var inValidState = ComponentState.invalid
     let inValidStateBind = Binding { inValidState } set: { state in inValidState = state }
 
     return ScrollView {
