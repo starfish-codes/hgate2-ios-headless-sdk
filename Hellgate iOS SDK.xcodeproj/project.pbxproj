@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4D380D572BDBA7B2005251EF /* CardNumberViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D380D562BDBA7B2005251EF /* CardNumberViewTests.swift */; };
+		4D54F8422BDBBBEB00CC048C /* WrappedUITextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D54F8412BDBBBEB00CC048C /* WrappedUITextFieldTests.swift */; };
 		4DA7EFBE2BD6995B00F51547 /* Hellgate_iOS_SDK.docc in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7EFBD2BD6995B00F51547 /* Hellgate_iOS_SDK.docc */; };
 		4DA7EFC42BD6995B00F51547 /* Hellgate_iOS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DA7EFB92BD6995B00F51547 /* Hellgate_iOS_SDK.framework */; };
 		4DA7EFCA2BD6995B00F51547 /* Hellgate_iOS_SDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DA7EFBC2BD6995B00F51547 /* Hellgate_iOS_SDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		4D380D562BDBA7B2005251EF /* CardNumberViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardNumberViewTests.swift; sourceTree = "<group>"; };
+		4D54F8412BDBBBEB00CC048C /* WrappedUITextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedUITextFieldTests.swift; sourceTree = "<group>"; };
 		4DA7EFB92BD6995B00F51547 /* Hellgate_iOS_SDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Hellgate_iOS_SDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DA7EFBC2BD6995B00F51547 /* Hellgate_iOS_SDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Hellgate_iOS_SDK.h; sourceTree = "<group>"; };
 		4DA7EFBD2BD6995B00F51547 /* Hellgate_iOS_SDK.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Hellgate_iOS_SDK.docc; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				4DA7F0242BD6B4A200F51547 /* CardNumberFormatterTests.swift */,
 				4DA7F02C2BD7D83D00F51547 /* CardBrandTests.swift */,
 				4D380D562BDBA7B2005251EF /* CardNumberViewTests.swift */,
+				4D54F8412BDBBBEB00CC048C /* WrappedUITextFieldTests.swift */,
 			);
 			path = "Hellgate iOS SDKTests";
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DA7F0232BD6B17A00F51547 /* CardUtilsTests.swift in Sources */,
+				4D54F8422BDBBBEB00CC048C /* WrappedUITextFieldTests.swift in Sources */,
 				4D380D572BDBA7B2005251EF /* CardNumberViewTests.swift in Sources */,
 				4DA7F0252BD6B4A200F51547 /* CardNumberFormatterTests.swift in Sources */,
 				4DA7F02D2BD7D83D00F51547 /* CardBrandTests.swift in Sources */,
