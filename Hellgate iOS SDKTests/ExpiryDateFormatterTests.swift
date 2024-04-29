@@ -21,4 +21,15 @@ final class ExpiryDateFormatterTests: XCTestCase {
             XCTAssertEqual(formatter.string(for: input), result)
         }
     }
+
+    func test_Given_FormattedText_When_Reverse_Then_IsFormatted() {
+        let formatter = CvcFormatter(maxLength: 4)
+
+        var result = String()
+        withUnsafeMutablePointer(to: &result) { mut in
+            let object = AutoreleasingUnsafeMutablePointer<AnyObject?>(mut)
+            XCTAssert(formatter.getObjectValue(object, for: "12 / 34", errorDescription: nil))
+            XCTAssertFalse(formatter.getObjectValue(nil, for: "12 / 34", errorDescription: nil))
+        }
+    }
 }

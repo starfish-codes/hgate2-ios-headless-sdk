@@ -2,7 +2,8 @@ import Combine
 import SwiftUI
 
 private enum Constant {
-    static let PLACEHOLDER_TEXT = "MM / YY"
+    static let PLACEHOLDER_TEXT_CVC = "CVC"
+    static let PLACEHOLDER_TEXT_CVV = "CVV"
 
     static let INTERNAL_PADDING: CGFloat = 4
     static let INTERNAL_BORDER_RADIUS: CGFloat = 8
@@ -12,25 +13,39 @@ private enum Constant {
     static let DEFAULT_COLOR = Color.black
 }
 
-public class ExpiryDateViewViewModel: ObservableObject {
+public enum Cvc: UInt {
+    case cvc = 3
+    case cvv = 4
+
+    var placeholder: String {
+        switch self {
+        case .cvc: Constant.PLACEHOLDER_TEXT_CVC
+        case .cvv: Constant.PLACEHOLDER_TEXT_CVV
+        }
+    }
+}
+
+public class CvcViewViewModel: ObservableObject {
     @Binding var state: ComponentState
     @Published var value: String = ""
     @Published var color: Color = .black
-    private var currentDate: Date
-    private var queue: DispatchQueue
+    let length: UInt
+    let placeholder: String
+    private let queue: DispatchQueue
 
     var cancellable: AnyCancellable?
 
     public init(
         state: Binding<ComponentState>,
         value: String,
-        currentDate: Date = .now,
+        length: Cvc,
         queue: DispatchQueue = .main
     ) {
         self._state = state
         self.value = value
-        self.currentDate = currentDate
+        self.length = length.rawValue
         self.queue = queue
+        self.placeholder = length.placeholder
 
         cancellable = self.$value
             .sink { [weak self] newValue in
@@ -57,32 +72,13 @@ public class ExpiryDateViewViewModel: ObservableObject {
 
     private func state(value: String) -> ComponentState {
         guard !value.isEmpty else { return .blank }
-        guard value.count == 4 else { return .incomplete }
-
-        if let month = Int(value.prefix(2)),
-           let year = Int("20" + value.suffix(2)) {
-
-            var components = DateComponents()
-            components.month = month
-            components.year = year
-
-            let expiry = Calendar.current.date(from: components)
-            let now = self.currentDate
-
-            // Allow cards that expire this month
-            if let expiry = expiry {
-                if now.compare(expiry) == .orderedDescending {
-                    return .invalid
-                }
-            }
-        }
-
+        guard value.count == self.length else { return .incomplete }
         return .complete
     }
 }
 
-public struct ExpiryDateField: View {
-    @StateObject private var viewModel: ExpiryDateViewViewModel
+public struct CvcView: View {
+    @StateObject private var viewModel: CvcViewViewModel
     var padding: CGFloat
 
     var onBegin: (() -> Void)?
@@ -90,14 +86,16 @@ public struct ExpiryDateField: View {
 
     public init(
         state: Binding<ComponentState>,
+        length: Cvc,
         padding: CGFloat = 0,
         onBegin: (() -> Void)? = nil,
         onEnd: (() -> Void)? = nil
     ) {
         self._viewModel = StateObject(
-            wrappedValue: ExpiryDateViewViewModel(
+            wrappedValue: CvcViewViewModel(
                 state: state,
-                value: ""
+                value: "",
+                length: length
             )
         )
         self.padding = padding
@@ -108,12 +106,12 @@ public struct ExpiryDateField: View {
     public var body: some View {
         WrappedUITextField(
             value: $viewModel.value,
-            placeholder: Constant.PLACEHOLDER_TEXT,
+            placeholder: viewModel.placeholder,
             fontSize: 16,
             foregroundColor: viewModel.color,
             backgroundColor: .white,
             keyboardType: .numberPad,
-            formatter: ExpiryDateFormatter(),
+            formatter: CvcFormatter(maxLength: viewModel.length),
             onBegin: onBegin,
             onEnd: onEnd
         )
@@ -122,7 +120,7 @@ public struct ExpiryDateField: View {
     }
 }
 
-extension ExpiryDateField {
+extension CvcView {
     public func border() -> some View {
         self
             .overlay(
@@ -141,14 +139,27 @@ extension ExpiryDateField {
 
     return ScrollView {
         Text("Default")
-        ExpiryDateField(
-            state: defaultStateBind
+        CvcView(
+            state: defaultStateBind,
+            length: .cvc
+        )
+
+        CvcView(
+            state: defaultStateBind,
+            length: .cvv
         )
 
         Text("Border applied")
 
-        ExpiryDateField(
-            state: defaultStateBind
+        CvcView(
+            state: defaultStateBind,
+            length: .cvc
+        )
+        .border()
+
+        CvcView(
+            state: defaultStateBind,
+            length: .cvv
         )
         .border()
     }
