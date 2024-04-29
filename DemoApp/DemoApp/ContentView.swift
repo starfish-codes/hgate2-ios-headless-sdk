@@ -3,6 +3,7 @@ import Hellgate_iOS_SDK
 
 struct ContentView: View {
     @State var cardNumberState = ComponentState.incomplete
+    @State var expiryState = ComponentState.incomplete
 
     var body: some View {
         VStack {
@@ -11,6 +12,9 @@ struct ContentView: View {
                 image: .leading
             )
             .border()
+
+            ExpiryDateField(state: $expiryState)
+                .border()
         }
         .padding()
     }
