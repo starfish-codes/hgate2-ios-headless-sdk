@@ -70,7 +70,7 @@ public class ExpiryDateViewViewModel: ObservableObject {
             let now = self.currentDate
 
             // Allow cards that expire this month
-            if let expiry {
+            if let expiry = expiry {
                 if now.compare(expiry) == .orderedDescending {
                     return .invalid
                 }
