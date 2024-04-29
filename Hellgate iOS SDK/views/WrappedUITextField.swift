@@ -140,13 +140,15 @@ public struct WrappedUITextField: UIViewRepresentable {
 
                 if self.formatter.getObjectValue(object, for: text, errorDescription: nil) {
                     #if DEBUG
-                    print("Unformat \(mut.pointee) - \(String(describing: object.pointee))")
+                    print("Unformat - \(String(describing: object.pointee))")
                     #endif
 
                     if let formattedText = self.formatter.string(for: object.pointee) {
                         textField.text = formattedText
                         value = object.pointee as? String ?? ""
                         return false
+                    } else {
+                        print("Could not format \(String(describing: object.pointee))")
                     }
                 } else {
                     print("Error formattting")

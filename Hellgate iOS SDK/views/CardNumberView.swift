@@ -181,12 +181,6 @@ extension CardNumberView {
     var defaultState = ComponentState.blank
     let defaultStateBind = Binding { defaultState } set: { state in defaultState = state }
 
-    var completState = ComponentState.complete
-    let completStateBind = Binding { completState } set: { state in completState = state }
-
-    var inValidState = ComponentState.invalid
-    let inValidStateBind = Binding { inValidState } set: { state in inValidState = state }
-
     return ScrollView {
         Text("Default")
         CardNumberView(
@@ -201,38 +195,6 @@ extension CardNumberView {
 
         CardNumberView(
             state: defaultStateBind,
-            image: .hidden
-        )
-
-        Text("Default - Complete")
-        CardNumberView(
-            state: completStateBind,
-            image: .leading
-        )
-
-        CardNumberView(
-            state: completStateBind,
-            image: .trailing
-        )
-
-        CardNumberView(
-            state: completStateBind,
-            image: .hidden
-        )
-
-        Text("Default - Invalid")
-        CardNumberView(
-            state: inValidStateBind,
-            image: .leading
-        )
-
-        CardNumberView(
-            state: inValidStateBind,
-            image: .trailing
-        )
-
-        CardNumberView(
-            state: inValidStateBind,
             image: .hidden
         )
 
