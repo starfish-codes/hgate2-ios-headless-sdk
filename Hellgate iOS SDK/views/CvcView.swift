@@ -79,10 +79,10 @@ public class CvcViewViewModel: ObservableObject {
 
 public struct CvcView: View {
     @StateObject private var viewModel: CvcViewViewModel
-    var padding: CGFloat
+    let padding: CGFloat
 
-    var onBegin: (() -> Void)?
-    var onEnd: (() -> Void)?
+    let onBegin: (() -> Void)?
+    let onEnd: (() -> Void)?
 
     public init(
         state: Binding<ComponentState>,

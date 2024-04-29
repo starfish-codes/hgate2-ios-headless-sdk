@@ -13,6 +13,7 @@
 		4D5A483B2BDF9DC200E27E6B /* CvcFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5A483A2BDF9DC200E27E6B /* CvcFormatter.swift */; };
 		4D5A483D2BDFA39100E27E6B /* CvcViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5A483C2BDFA39100E27E6B /* CvcViewTests.swift */; };
 		4D5A483F2BDFA50700E27E6B /* CvcFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5A483E2BDFA50700E27E6B /* CvcFormatterTests.swift */; };
+		4D5A48412BDFAC9700E27E6B /* AdditionalFieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5A48402BDFAC9700E27E6B /* AdditionalFieldsView.swift */; };
 		4DA140F02BDF7E40004045B1 /* ExpiryDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA140EF2BDF7E40004045B1 /* ExpiryDateView.swift */; };
 		4DA140F22BDF8240004045B1 /* ExpiryDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA140F12BDF8240004045B1 /* ExpiryDateFormatter.swift */; };
 		4DA140F42BDF8747004045B1 /* ExpiryDateViewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA140F32BDF8747004045B1 /* ExpiryDateViewViewModelTests.swift */; };
@@ -49,6 +50,7 @@
 		4D5A483A2BDF9DC200E27E6B /* CvcFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CvcFormatter.swift; sourceTree = "<group>"; };
 		4D5A483C2BDFA39100E27E6B /* CvcViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CvcViewTests.swift; sourceTree = "<group>"; };
 		4D5A483E2BDFA50700E27E6B /* CvcFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CvcFormatterTests.swift; sourceTree = "<group>"; };
+		4D5A48402BDFAC9700E27E6B /* AdditionalFieldsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalFieldsView.swift; sourceTree = "<group>"; };
 		4DA140EF2BDF7E40004045B1 /* ExpiryDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpiryDateView.swift; sourceTree = "<group>"; };
 		4DA140F12BDF8240004045B1 /* ExpiryDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpiryDateFormatter.swift; sourceTree = "<group>"; };
 		4DA140F32BDF8747004045B1 /* ExpiryDateViewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpiryDateViewViewModelTests.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				4DA140F12BDF8240004045B1 /* ExpiryDateFormatter.swift */,
 				4D5A48382BDF9C5E00E27E6B /* CvcView.swift */,
 				4D5A483A2BDF9DC200E27E6B /* CvcFormatter.swift */,
+				4D5A48402BDFAC9700E27E6B /* AdditionalFieldsView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				4DA7EFD52BD69B2F00F51547 /* CardNumberView.swift in Sources */,
 				4D5A48392BDF9C5E00E27E6B /* CvcView.swift in Sources */,
 				4DA7EFD72BD6A08800F51547 /* CardNumberFormatter.swift in Sources */,
+				4D5A48412BDFAC9700E27E6B /* AdditionalFieldsView.swift in Sources */,
 				4DA140F22BDF8240004045B1 /* ExpiryDateFormatter.swift in Sources */,
 				4DA7F02F2BD936CC00F51547 /* CardBrand+BrandDetails.swift in Sources */,
 				4DA7F02B2BD7B88100F51547 /* CardBrand.swift in Sources */,

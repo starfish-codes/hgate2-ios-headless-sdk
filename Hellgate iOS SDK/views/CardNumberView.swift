@@ -24,7 +24,7 @@ public class CardNumberViewViewModel: ObservableObject {
     @Published var value: String = ""
     @Published var color: Color = .black
     @Published var cardBrand: CardBrand = .unknown
-    private var queue: DispatchQueue
+    private let queue: DispatchQueue
 
     var cancellable: AnyCancellable?
 
@@ -96,11 +96,11 @@ public class CardNumberViewViewModel: ObservableObject {
 public struct CardNumberView: View {
     @StateObject private var viewModel: CardNumberViewViewModel
 
-    var image: ImagePosition
-    var padding: CGFloat
+    let image: ImagePosition
+    let padding: CGFloat
 
-    var onBegin: (() -> Void)?
-    var onEnd: (() -> Void)?
+    let onBegin: (() -> Void)?
+    let onEnd: (() -> Void)?
 
     public enum ImagePosition {
         case leading
