@@ -17,7 +17,7 @@ struct ContentView: View {
             ExpiryDateField(state: $expiryState)
                 .border()
 
-            CvcView(state: $cvcState, length: 3)
+            CvcView(state: $cvcState, length: .cvc)
                 .border()
         }
         .padding()

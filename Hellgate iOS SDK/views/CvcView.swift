@@ -19,8 +19,8 @@ public enum Cvc: UInt {
 
     var placeholder: String {
         switch self {
-        case .cvc: Constant.PLACEHOLDER_TEXT_CVC
-        case .cvv: Constant.PLACEHOLDER_TEXT_CVV
+        case .cvc: return Constant.PLACEHOLDER_TEXT_CVC
+        case .cvv: return Constant.PLACEHOLDER_TEXT_CVV
         }
     }
 }
