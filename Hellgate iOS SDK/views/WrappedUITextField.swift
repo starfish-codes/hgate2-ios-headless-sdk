@@ -8,7 +8,7 @@ public struct WrappedUITextField: UIViewRepresentable {
     var foregroundColor: Color
     var backgroundColor: Color
     var keyboardType: UIKeyboardType
-    var formatter: Formatter
+    var formatter: Formatter?
 
     var onBegin: (() -> Void)?
     var onEnd: (() -> Void)?
@@ -20,7 +20,7 @@ public struct WrappedUITextField: UIViewRepresentable {
         foregroundColor: Color = .black,
         backgroundColor: Color = .white,
         keyboardType: UIKeyboardType = .numberPad,
-        formatter: Formatter,
+        formatter: Formatter?,
         onBegin: (() -> Void)? = nil,
         onEnd: (() -> Void)? = nil
     ) {
@@ -45,8 +45,7 @@ public struct WrappedUITextField: UIViewRepresentable {
         textField.clearButtonMode = .never
         textField.delegate = context.coordinator
 
-        let formatted = self.formatter.string(for: value)
-        textField.text = formatted
+        textField.text = self.formatter?.string(for: value)
 
         // Toolbar for keyboard
         let inputView = UIToolbar()
@@ -77,7 +76,7 @@ public struct WrappedUITextField: UIViewRepresentable {
         textField.clearButtonMode = .never
         context.coordinator.resign = { [weak textField] in textField?.resignFirstResponder() }
 
-        let formatted = self.formatter.string(for: textField.text)
+        let formatted = self.formatter?.string(for: textField.text)
         textField.text = formatted ?? textField.text
     }
 
@@ -94,14 +93,14 @@ public struct WrappedUITextField: UIViewRepresentable {
 
         @Binding var value: String
 
-        var formatter: Formatter
+        var formatter: Formatter?
         var resign: (() -> Void)?
         var onBegin: (() -> Void)?
         var onEnd: (() -> Void)?
 
         init(
             value: Binding<String>,
-            formatter: Formatter,
+            formatter: Formatter?,
             resign: (() -> Void)? = nil,
             onBegin: (() -> Void)? = nil,
             onEnd: (() -> Void)? = nil
@@ -127,23 +126,28 @@ public struct WrappedUITextField: UIViewRepresentable {
             replacementString string: String
         ) -> Bool {
 
+
             var text = textField.text ?? ""
             text = (text as NSString).replacingCharacters(in: range, with: string)
 
-            #if DEBUG
+#if DEBUG
             print("Text should change - \(textField.text ?? "NIL") to \(text)")
-            #endif
+#endif
+
+            guard let formatter = self.formatter else {
+                return true
+            }
 
             var result = String()
             return withUnsafeMutablePointer(to: &result) { mut in
                 let object = AutoreleasingUnsafeMutablePointer<AnyObject?>(mut)
 
-                if self.formatter.getObjectValue(object, for: text, errorDescription: nil) {
+                if formatter.getObjectValue(object, for: text, errorDescription: nil) {
                     #if DEBUG
                     print("Unformat - \(String(describing: object.pointee))")
                     #endif
 
-                    if let formattedText = self.formatter.string(for: object.pointee) {
+                    if let formattedText = formatter.string(for: object.pointee) {
                         textField.text = formattedText
                         value = object.pointee as? String ?? ""
                         return false

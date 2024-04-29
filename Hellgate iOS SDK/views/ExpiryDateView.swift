@@ -16,8 +16,8 @@ public class ExpiryDateViewViewModel: ObservableObject {
     @Binding var state: ComponentState
     @Published var value: String = ""
     @Published var color: Color = .black
-    private var currentDate: Date
-    private var queue: DispatchQueue
+    private let currentDate: Date
+    private let queue: DispatchQueue
 
     var cancellable: AnyCancellable?
 
@@ -83,10 +83,10 @@ public class ExpiryDateViewViewModel: ObservableObject {
 
 public struct ExpiryDateField: View {
     @StateObject private var viewModel: ExpiryDateViewViewModel
-    var padding: CGFloat
+    let padding: CGFloat
 
-    var onBegin: (() -> Void)?
-    var onEnd: (() -> Void)?
+    let onBegin: (() -> Void)?
+    let onEnd: (() -> Void)?
 
     public init(
         state: Binding<ComponentState>,

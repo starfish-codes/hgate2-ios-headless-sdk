@@ -1,7 +1,7 @@
 import Foundation
 
 class CvcFormatter: Formatter {
-    let maxLength: UInt
+    private let maxLength: UInt
 
     init(maxLength: UInt) {
         self.maxLength = maxLength
