@@ -27,7 +27,7 @@ public enum AdditionalFieldType: String {
 
 public struct AdditionalFieldsView: View {
     let type: AdditionalFieldType
-    @State private var text: String
+    @State var text: String
     let padding: CGFloat
 
     let onBegin: (() -> Void)?

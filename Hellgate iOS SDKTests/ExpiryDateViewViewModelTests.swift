@@ -5,7 +5,7 @@ import XCTest
 final class ExpiryDateViewViewModelTests: XCTestCase {
 
     private func viewModel() -> (ExpiryDateViewViewModel, DispatchQueue) {
-        var state = ComponentState.blank
+        var state = ViewState(state: .blank)
         let binding = Binding {
             state
         } set: { newState in
@@ -22,7 +22,7 @@ final class ExpiryDateViewViewModelTests: XCTestCase {
             .date(from: components) ?? .now
 
         return (ExpiryDateViewViewModel(
-            state: binding,
+            viewState: binding,
             value: "",
             currentDate: date,
             queue: queue
@@ -33,7 +33,7 @@ final class ExpiryDateViewViewModelTests: XCTestCase {
     func test_Given_EmptyValue_When_Init_Then_StateBlank() {
         let (viewModel, _) = viewModel()
 
-        XCTAssertEqual(viewModel.state, .blank)
+        XCTAssertEqual(viewModel.viewState.state, .blank)
     }
 
     func test_Given_EmptyValue_When_InputFutureDate_Then_StateComplete() {
@@ -41,7 +41,7 @@ final class ExpiryDateViewViewModelTests: XCTestCase {
 
         viewModel.value = "1299"
         queue.sync {
-            XCTAssertEqual(viewModel.state, .complete)
+            XCTAssertEqual(viewModel.viewState.state, .complete)
         }
     }
 
@@ -50,7 +50,7 @@ final class ExpiryDateViewViewModelTests: XCTestCase {
 
         viewModel.value = "1210"
         queue.sync {
-            XCTAssertEqual(viewModel.state, .invalid)
+            XCTAssertEqual(viewModel.viewState.state, .invalid)
         }
     }
 
@@ -59,7 +59,7 @@ final class ExpiryDateViewViewModelTests: XCTestCase {
 
         viewModel.value = "0111"
         queue.sync {
-            XCTAssertEqual(viewModel.state, .complete)
+            XCTAssertEqual(viewModel.viewState.state, .complete)
         }
     }
 
@@ -68,7 +68,7 @@ final class ExpiryDateViewViewModelTests: XCTestCase {
 
         viewModel.value = "14"
         queue.sync {
-            XCTAssertEqual(viewModel.state, .incomplete)
+            XCTAssertEqual(viewModel.viewState.state, .incomplete)
         }
     }
 }

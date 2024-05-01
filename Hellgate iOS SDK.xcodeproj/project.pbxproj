@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D0E6EE72BE0DD6800D7EE5A /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0E6EE62BE0DD6800D7EE5A /* Client.swift */; };
+		4D0E6EE92BE16E1000D7EE5A /* Field+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0E6EE82BE16E1000D7EE5A /* Field+Extension.swift */; };
+		4D0E6EEB2BE2567000D7EE5A /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0E6EEA2BE2567000D7EE5A /* ViewState.swift */; };
 		4D380D572BDBA7B2005251EF /* CardNumberViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D380D562BDBA7B2005251EF /* CardNumberViewTests.swift */; };
 		4D54F8422BDBBBEB00CC048C /* WrappedUITextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D54F8412BDBBBEB00CC048C /* WrappedUITextFieldTests.swift */; };
 		4D5A48392BDF9C5E00E27E6B /* CvcView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5A48382BDF9C5E00E27E6B /* CvcView.swift */; };
@@ -14,6 +17,7 @@
 		4D5A483D2BDFA39100E27E6B /* CvcViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5A483C2BDFA39100E27E6B /* CvcViewTests.swift */; };
 		4D5A483F2BDFA50700E27E6B /* CvcFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5A483E2BDFA50700E27E6B /* CvcFormatterTests.swift */; };
 		4D5A48412BDFAC9700E27E6B /* AdditionalFieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5A48402BDFAC9700E27E6B /* AdditionalFieldsView.swift */; };
+		4D5A48442BDFB39200E27E6B /* Hellgate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5A48432BDFB39200E27E6B /* Hellgate.swift */; };
 		4DA140F02BDF7E40004045B1 /* ExpiryDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA140EF2BDF7E40004045B1 /* ExpiryDateView.swift */; };
 		4DA140F22BDF8240004045B1 /* ExpiryDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA140F12BDF8240004045B1 /* ExpiryDateFormatter.swift */; };
 		4DA140F42BDF8747004045B1 /* ExpiryDateViewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA140F32BDF8747004045B1 /* ExpiryDateViewViewModelTests.swift */; };
@@ -44,6 +48,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4D0E6EE62BE0DD6800D7EE5A /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		4D0E6EE82BE16E1000D7EE5A /* Field+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Field+Extension.swift"; sourceTree = "<group>"; };
+		4D0E6EEA2BE2567000D7EE5A /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
 		4D380D562BDBA7B2005251EF /* CardNumberViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardNumberViewTests.swift; sourceTree = "<group>"; };
 		4D54F8412BDBBBEB00CC048C /* WrappedUITextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedUITextFieldTests.swift; sourceTree = "<group>"; };
 		4D5A48382BDF9C5E00E27E6B /* CvcView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CvcView.swift; sourceTree = "<group>"; };
@@ -51,6 +58,7 @@
 		4D5A483C2BDFA39100E27E6B /* CvcViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CvcViewTests.swift; sourceTree = "<group>"; };
 		4D5A483E2BDFA50700E27E6B /* CvcFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CvcFormatterTests.swift; sourceTree = "<group>"; };
 		4D5A48402BDFAC9700E27E6B /* AdditionalFieldsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalFieldsView.swift; sourceTree = "<group>"; };
+		4D5A48432BDFB39200E27E6B /* Hellgate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hellgate.swift; sourceTree = "<group>"; };
 		4DA140EF2BDF7E40004045B1 /* ExpiryDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpiryDateView.swift; sourceTree = "<group>"; };
 		4DA140F12BDF8240004045B1 /* ExpiryDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpiryDateFormatter.swift; sourceTree = "<group>"; };
 		4DA140F32BDF8747004045B1 /* ExpiryDateViewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpiryDateViewViewModelTests.swift; sourceTree = "<group>"; };
@@ -90,6 +98,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D5A48422BDFB37C00E27E6B /* api */ = {
+			isa = PBXGroup;
+			children = (
+				4D5A48432BDFB39200E27E6B /* Hellgate.swift */,
+				4D0E6EE62BE0DD6800D7EE5A /* Client.swift */,
+				4D0E6EE82BE16E1000D7EE5A /* Field+Extension.swift */,
+			);
+			path = api;
+			sourceTree = "<group>";
+		};
 		4DA7EFAF2BD6995A00F51547 = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +129,7 @@
 		4DA7EFBB2BD6995B00F51547 /* Hellgate iOS SDK */ = {
 			isa = PBXGroup;
 			children = (
+				4D5A48422BDFB37C00E27E6B /* api */,
 				4DA7F01F2BD6AFD000F51547 /* utils */,
 				4DA7EFD32BD69B1100F51547 /* views */,
 				4DA7EFBC2BD6995B00F51547 /* Hellgate_iOS_SDK.h */,
@@ -147,6 +166,7 @@
 				4D5A48382BDF9C5E00E27E6B /* CvcView.swift */,
 				4D5A483A2BDF9DC200E27E6B /* CvcFormatter.swift */,
 				4D5A48402BDFAC9700E27E6B /* AdditionalFieldsView.swift */,
+				4D0E6EEA2BE2567000D7EE5A /* ViewState.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -224,6 +244,7 @@
 				TargetAttributes = {
 					4DA7EFB82BD6995A00F51547 = {
 						CreatedOnToolsVersion = 15.2;
+						LastSwiftMigration = 1520;
 					};
 					4DA7EFC22BD6995B00F51547 = {
 						CreatedOnToolsVersion = 15.2;
@@ -295,11 +316,15 @@
 			files = (
 				4D5A483B2BDF9DC200E27E6B /* CvcFormatter.swift in Sources */,
 				4DA7EFBE2BD6995B00F51547 /* Hellgate_iOS_SDK.docc in Sources */,
+				4D0E6EEB2BE2567000D7EE5A /* ViewState.swift in Sources */,
 				4DA7F0212BD6AFDE00F51547 /* CardUtils.swift in Sources */,
 				4DA7F0272BD7A1CB00F51547 /* WrappedUITextField.swift in Sources */,
+				4D0E6EE92BE16E1000D7EE5A /* Field+Extension.swift in Sources */,
 				4DA140F02BDF7E40004045B1 /* ExpiryDateView.swift in Sources */,
 				4DA7EFD52BD69B2F00F51547 /* CardNumberView.swift in Sources */,
 				4D5A48392BDF9C5E00E27E6B /* CvcView.swift in Sources */,
+				4D5A48442BDFB39200E27E6B /* Hellgate.swift in Sources */,
+				4D0E6EE72BE0DD6800D7EE5A /* Client.swift in Sources */,
 				4DA7EFD72BD6A08800F51547 /* CardNumberFormatter.swift in Sources */,
 				4D5A48412BDFAC9700E27E6B /* AdditionalFieldsView.swift in Sources */,
 				4DA140F22BDF8240004045B1 /* ExpiryDateFormatter.swift in Sources */,
@@ -463,6 +488,7 @@
 		4DA7EFCE2BD6995B00F51547 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -487,6 +513,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -495,6 +522,7 @@
 		4DA7EFCF2BD6995B00F51547 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;

@@ -26,7 +26,7 @@ public enum Cvc: UInt {
 }
 
 public class CvcViewViewModel: ObservableObject {
-    @Binding var state: ComponentState
+    @Binding var viewState: ViewState
     @Published var value: String = ""
     @Published var color: Color = .black
     let length: UInt
@@ -36,12 +36,12 @@ public class CvcViewViewModel: ObservableObject {
     var cancellable: AnyCancellable?
 
     public init(
-        state: Binding<ComponentState>,
+        viewState: Binding<ViewState>,
         value: String,
         length: Cvc,
         queue: DispatchQueue = .main
     ) {
-        self._state = state
+        self._viewState = viewState
         self.value = value
         self.length = length.rawValue
         self.queue = queue
@@ -57,8 +57,8 @@ public class CvcViewViewModel: ObservableObject {
         queue.async { [weak self] in
             guard let self = self else { return }
 
-            self.state = self.state(value: value)
-            self.color = self.color(state: self.state)
+            self.viewState = self.state(value: value)
+            self.color = self.color(state: self.viewState.state)
         }
     }
 
@@ -70,22 +70,22 @@ public class CvcViewViewModel: ObservableObject {
         }
     }
 
-    private func state(value: String) -> ComponentState {
-        guard !value.isEmpty else { return .blank }
-        guard value.count == self.length else { return .incomplete }
-        return .complete
+    private func state(value: String) -> ViewState {
+        guard !value.isEmpty else { return ViewState(state: .blank, value: value) }
+        guard value.count == self.length else { return ViewState(state: .incomplete, value: value) }
+        return ViewState(state: .complete, value: value)
     }
 }
 
 public struct CvcView: View {
-    @StateObject private var viewModel: CvcViewViewModel
+    @StateObject var viewModel: CvcViewViewModel
     let padding: CGFloat
 
     let onBegin: (() -> Void)?
     let onEnd: (() -> Void)?
 
     public init(
-        state: Binding<ComponentState>,
+        viewState: Binding<ViewState>,
         length: Cvc,
         padding: CGFloat = 0,
         onBegin: (() -> Void)? = nil,
@@ -93,7 +93,7 @@ public struct CvcView: View {
     ) {
         self._viewModel = StateObject(
             wrappedValue: CvcViewViewModel(
-                state: state,
+                viewState: viewState,
                 value: "",
                 length: length
             )
@@ -134,31 +134,31 @@ extension CvcView {
 
 #Preview {
 
-    var defaultState = ComponentState.blank
+    var defaultState = ViewState(state: .blank)
     let defaultStateBind = Binding { defaultState } set: { state in defaultState = state }
 
     return ScrollView {
         Text("Default")
         CvcView(
-            state: defaultStateBind,
+            viewState: defaultStateBind,
             length: .cvc
         )
 
         CvcView(
-            state: defaultStateBind,
+            viewState: defaultStateBind,
             length: .cvv
         )
 
         Text("Border applied")
 
         CvcView(
-            state: defaultStateBind,
+            viewState: defaultStateBind,
             length: .cvc
         )
         .border()
 
         CvcView(
-            state: defaultStateBind,
+            viewState: defaultStateBind,
             length: .cvv
         )
         .border()
