@@ -18,6 +18,8 @@ class ContentViewViewModel: ObservableObject {
     @Published var sessionState: SessionState?
     @Published var token: String?
 
+    @Published var showTokenizeWaitingSpinner = false
+
     // This called needs to be performed on your backend servers
     private func fetchSessionId() async -> String {
         var url = Self.sandboxURL
@@ -44,6 +46,8 @@ class ContentViewViewModel: ObservableObject {
 
     @MainActor
     func initSession() async {
+        showTokenizeWaitingSpinner = false
+
         // Retrieve the session id from your backend services
         let sessionId = await fetchSessionId()
         self.sessionId = sessionId

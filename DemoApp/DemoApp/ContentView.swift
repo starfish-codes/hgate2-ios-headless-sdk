@@ -36,34 +36,46 @@ struct ContentView: View {
 
                 case .REQUIRE_TOKENIZATION:
                     VStack(alignment: .leading) {
-                        Text("Card Details")
-                            .font(.caption)
 
-                        CardNumberView(
-                            viewState: $viewModel.cardNumberViewState,
-                            image: .leading
-                        )
-                        .border()
+                        if viewModel.showTokenizeWaitingSpinner {
+                            ProgressView()
+                        } else {
+                            Text("Card Details")
+                                .font(.caption)
 
-                        ExpiryDateField(viewState: $viewModel.expiryViewState)
+                            CardNumberView(
+                                viewState: $viewModel.cardNumberViewState,
+                                image: .leading
+                            )
                             .border()
 
-                        CvcView(viewState: $viewModel.cvcViewState, length: .cvc)
-                            .border()
+                            ExpiryDateField(viewState: $viewModel.expiryViewState)
+                                .border()
 
-                        Button("Tokenize") {
-                            Task {
-                                await viewModel.tokenize()
+                            CvcView(viewState: $viewModel.cvcViewState, length: .cvc)
+                                .border()
+
+                            Button("Tokenize") {
+                                Task {
+                                    viewModel.showTokenizeWaitingSpinner = true
+                                    await viewModel.tokenize()
+                                }
                             }
+                            .frame(height: 44)
+                            .disabled(viewModel.sessionId.isEmpty)
                         }
-                        .frame(height: 44)
-                        .disabled(viewModel.sessionId.isEmpty)
                     }
+
                 case .WAITING:
-                    Text("Session status: \(viewModel.sessionState?.rawValue ?? "N/A")")
+                    ProgressView()
+
+                    Button("Manual check for session change") {
+                        Task {
+                            await viewModel.sessionStatus()
+                        }
+                    }
 
                 case .COMPLETED:
-                    Text("Session status: \(viewModel.sessionState?.rawValue ?? "N/A")")
                     Text(viewModel.token ?? "N/A")
 
                 default:
@@ -74,8 +86,6 @@ struct ContentView: View {
                     }
                 }
             }
-
-
 
             Spacer()
         }
