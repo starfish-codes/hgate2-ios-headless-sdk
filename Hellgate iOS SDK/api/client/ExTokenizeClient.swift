@@ -7,7 +7,7 @@ class ExTokenizeClient: ExTokenizeClientAPI {
     private let client: HttpClient
 
     enum ExTokenizeClient: Error {
-        case notImplemented
+        case invalidCardData
     }
 
     init(baseURL: URL, client: HttpClient) {
@@ -16,12 +16,24 @@ class ExTokenizeClient: ExTokenizeClientAPI {
     }
 
     func tokenizeCard(apiKey: String, cardData: CardData) async -> Result<ExTokenizeResponse, Error> {
-        return .failure(ExTokenizeClient.notImplemented)
+        var url = self.baseURL
+        url.appendPathComponent("tokenize")
+
+        if let body = GuardTokenizeRequest(cardData: cardData) {
+            return await self.client.request(
+                method: "POST",
+                url: url,
+                body: body,
+                headers: ["BT-API-KEY": apiKey]
+            )
+        } else {
+            return .failure(ExTokenizeClient.invalidCardData)
+        }
     }
 }
 
 struct ExTokenizeRequest: Encodable {
-
+    // TODO:
 }
 
 struct ExTokenizeResponse: Decodable {
