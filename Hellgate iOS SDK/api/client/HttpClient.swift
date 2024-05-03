@@ -49,6 +49,10 @@ class HttpClient {
 
             do {
                 let data = try jsonEncoder.encode(body)
+                #if DEBUG
+                print("Body:")
+                print(String(data: data, encoding: .utf8)!)
+                #endif
                 request.httpBody = data
             } catch {
                 return .failure(HttpError.failedToEncodeBody)
@@ -59,6 +63,10 @@ class HttpClient {
     }
 
     private func make<Response: Decodable>(request: URLRequest) async -> Result<Response, Error> {
+
+        #if DEBUG
+        print("\(String(describing: request.httpMethod)): \(String(describing: request.url?.absoluteString))")
+        #endif
 
         do {
             let (data, response) = try await self.session.data(for: request, delegate: nil)

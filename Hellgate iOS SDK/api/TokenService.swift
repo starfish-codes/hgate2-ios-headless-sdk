@@ -68,7 +68,7 @@ class TokenService: TokenServiceProvider {
 
             if case let .success(sessionStatus) = response,
                let data = sessionStatus.data,
-               let tokenId = data["tokenId"] {
+               let tokenId = data["token_id"] {
                 return .success(.init(id: tokenId))
             }
         }

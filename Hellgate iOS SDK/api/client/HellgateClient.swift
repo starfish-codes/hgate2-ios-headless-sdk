@@ -40,7 +40,7 @@ class HellgateClient: HellgateClientAPI {
         let body = SessionCompleteTokenizeCard(
             result: SessionCompleteTokenizeCard.Result(
                 tokenId: tokenId,
-                additionalData: .init(
+                additionalData: additionalData.isEmpty ? nil: .init(
                     cardholderName: additionalData[.CARDHOLDER_NAME]
                 )
             )

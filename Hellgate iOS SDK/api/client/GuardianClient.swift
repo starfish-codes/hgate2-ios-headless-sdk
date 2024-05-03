@@ -42,7 +42,7 @@ struct GuardTokenizeRequest: Encodable {
         case expiryMonth = "expiry_month"
         case expiryYear = "expiry_year"
         case accountNumber = "account_number"
-        case securityCode = " issuer_identification_number"
+        case securityCode = "issuer_identification_number"
     }
 
     init?(cardData: CardData) {

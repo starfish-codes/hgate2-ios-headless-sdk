@@ -34,7 +34,7 @@ class MockURLSession: URLDataTask {
     var data: ((URLRequest) -> Void)?
     var dataReturn: (Data, URLResponse)?
 
-    func data(for request: URLRequest, delegate: (any URLSessionTaskDelegate)?) async throws -> (Data, URLResponse) {
+    func data(for request: URLRequest, delegate: URLSessionTaskDelegate?) async throws -> (Data, URLResponse) {
         self.data?(request)
 
         return dataReturn ?? (Data(), URLResponse())

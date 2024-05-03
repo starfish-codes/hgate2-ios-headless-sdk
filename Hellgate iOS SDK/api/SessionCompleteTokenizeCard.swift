@@ -10,6 +10,11 @@ struct SessionCompleteTokenizeCard: Encodable {
     struct Result: Encodable {
         let tokenId: String
         let additionalData: AdditionalData?
+
+        enum CodingKeys: String, CodingKey {
+            case tokenId = "token_id"
+            case additionalData = "additional_data"
+        }
     }
 
     struct AdditionalData: Encodable {
