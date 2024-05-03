@@ -126,7 +126,6 @@ public struct WrappedUITextField: UIViewRepresentable {
             replacementString string: String
         ) -> Bool {
 
-
             var text = textField.text ?? ""
             text = (text as NSString).replacingCharacters(in: range, with: string)
 

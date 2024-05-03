@@ -24,7 +24,10 @@ struct ContentView: View {
 
                     Button("Get Session Id") {
                         Task {
+                            // Retrieve the session id from your backend services
                             await fetchSessionId()
+
+                            // Initialise Hellgate with the session id
                             hellgate = await initHellgate(baseUrl: Self.sandboxURL, sessionId: sessionId)
                         }
                     }
@@ -65,13 +68,16 @@ struct ContentView: View {
                 Button("Tokenize") {
                     Task {
                         if let hellgate = self.hellgate {
-                            let handle = await hellgate.cardHandler()
-                            _ = handle?.tokenizeCard(
-                                cardNumberViewState,
-                                cvcViewState,
-                                expiryViewState,
-                                []
-                            )
+                            let result = await hellgate.cardHandler()
+                            if case let .success(handler) = result {
+                                let response = await handler.tokenizeCard(
+                                    cardNumberViewState,
+                                    cvcViewState,
+                                    expiryViewState,
+                                    [:]
+                                )
+                                print(response)
+                            }
                         }
                     }
                 }
