@@ -8,11 +8,11 @@ protocol TokenServiceProvider {
 
 class TokenService: TokenServiceProvider {
     let hellgateClient: HellgateClientAPI
-    let client: HttpClient
+    let client: HttpClientSession
 
     init(
         hellgateClient: HellgateClientAPI,
-        client: HttpClient
+        client: HttpClientSession
     ) {
         self.hellgateClient = hellgateClient
         self.client = client

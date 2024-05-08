@@ -95,26 +95,45 @@ final class HellgateTests: XCTestCase {
         let status = await hellgate.fetchSessionStatus()
         XCTAssertEqual(status, .UNKNOWN)
     }
-}
 
-class MockHellgateClient: HellgateClientAPI {
-    var sessionStatus: () -> Result<Hellgate_iOS_SDK.SessionResponse, Error>
-    var completeTokenizeCard: () -> Result<Hellgate_iOS_SDK.SessionResponse, Error>
+    func test_Given_RequireTokenization_When_GetCardHandler_Then_ReturnCardHandler() async {
 
-    init(sessionStatus: @escaping () -> Result<Hellgate_iOS_SDK.SessionResponse, Error>, competeTokenizeCard: @escaping () -> Result<Hellgate_iOS_SDK.SessionResponse, Error>) {
-        self.sessionStatus = sessionStatus
-        self.completeTokenizeCard = competeTokenizeCard
+        let mock = MockHellgateClient {
+            .success(.init(data: nil, nextAction: .tokenize_card, status: nil))
+        } competeTokenizeCard: {
+            .failure(FakeError.error)
+        }
+
+        let baseURL = URL(string:"https://api-reference.hellgate.io")!
+        let sessionId = ""
+        let hellgate = InternalHellgate(baseUrl: baseURL, sessionId: sessionId, client: HttpClient(), hellgateClient: mock)
+
+        let result = await hellgate.cardHandler()
+
+        if case .failure(_) = result {
+            XCTFail()
+        }
     }
 
-    func sessionStatus(sessionId: String) async -> Result<Hellgate_iOS_SDK.SessionResponse, Error> {
-        return sessionStatus()
-    }
+    func test_Given_NotRequireTokenization_When_GetCardHandler_Then_ReturnFailure() async {
 
-    func completeTokenizeCard(
-        sessionId: String,
-        tokenId: String,
-        additionalData: [Hellgate_iOS_SDK.AdditionalFieldType : String]
-    ) async -> Result<Hellgate_iOS_SDK.SessionResponse, Error> {
-        return completeTokenizeCard()
+        let mock = MockHellgateClient {
+            .success(.init(data: nil, nextAction: nil, status: "UNKNOWN"))
+        } competeTokenizeCard: {
+            .failure(FakeError.error)
+        }
+
+        let baseURL = URL(string:"https://api-reference.hellgate.io")!
+        let sessionId = ""
+        let hellgate = InternalHellgate(baseUrl: baseURL, sessionId: sessionId, client: HttpClient(), hellgateClient: mock)
+
+        let result = await hellgate.cardHandler()
+
+        switch result {
+        case .success(_):
+            XCTFail()
+        case .failure(let failure):
+            XCTAssertEqual(failure.localizedDescription, "Session is not in correct state to tokenize card, actual state: UNKNOWN")
+        }
     }
 }
