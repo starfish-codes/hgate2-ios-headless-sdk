@@ -91,12 +91,8 @@ class HttpClient: HttpClientSession {
             print(String(data: data, encoding: .utf8)!)
             #endif
 
-            if let response = response as? HTTPURLResponse {
-                // TODO: Add correct status code responses
-                switch response.statusCode {
-                case 201...999: throw HttpError.statusCode(response.statusCode)
-                default: break
-                }
+            if let response = response as? HTTPURLResponse, response.statusCode != 200 {
+                throw HttpError.statusCode(response.statusCode)
             }
 
             let jsonDecoder = JSONDecoder()

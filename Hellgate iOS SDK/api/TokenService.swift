@@ -30,15 +30,15 @@ class TokenService: TokenServiceProvider {
 
             guard sessionStatus.nextAction == .tokenize_card,
                   let data = sessionStatus.data,
-                  let apiKey = data["api_key"],
-                  let baseUrl = data["base_url"],
+                  let apiKey = data.apiKey,
+                  let baseUrl = data.baseUrl,
                   let url = URL(string: baseUrl) else {
                 return .failure(.init(message: "Tokenization failed"))
             }
 
             var tokenId: String
-            switch data["provider"] {
-            case "external":
+            switch data.provider {
+            case .external:
                 let response = await ExTokenizeClient(baseURL: url, client: client)
                     .tokenizeCard(apiKey: apiKey, cardData: cardData)
 
@@ -47,7 +47,7 @@ class TokenService: TokenServiceProvider {
                 } else {
                     return .failure(.init(message: "Tokenization failed"))
                 }
-            case "guardian":
+            case .guardian:
                 let response = await GuardianClient(baseURL: url, client: client)
                     .tokenizeCard(apiKey: apiKey, cardData: cardData)
 
@@ -68,7 +68,7 @@ class TokenService: TokenServiceProvider {
 
             if case let .success(sessionStatus) = response,
                let data = sessionStatus.data,
-               let tokenId = data["token_id"] {
+               let tokenId = data.tokenId {
                 return .success(.init(id: tokenId))
             }
         }

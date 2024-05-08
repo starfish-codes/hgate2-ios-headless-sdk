@@ -20,7 +20,7 @@ final class HellgateTests: XCTestCase {
     func test_Given_InitHellgate_When_FetchSessionStatus_Then_ReturnRequireTokenization() async throws {
 
         let mock = MockHellgateClient {
-            .success(.init(data: [:], nextAction: .tokenize_card, status: nil))
+            .success(.init(data: nil, nextAction: .tokenize_card, status: nil))
         } competeTokenizeCard: {
             .failure(FakeError.error)
         }
@@ -36,7 +36,7 @@ final class HellgateTests: XCTestCase {
     func test_Given_InitHellgate_When_FetchSessionStatus_Then_ReturnWAITING() async throws {
 
         let mock = MockHellgateClient {
-            .success(.init(data: [:], nextAction: .wait, status: nil))
+            .success(.init(data: nil, nextAction: .wait, status: nil))
         } competeTokenizeCard: {
             .failure(FakeError.error)
         }
@@ -51,7 +51,7 @@ final class HellgateTests: XCTestCase {
     func test_Given_InitHellgate_When_FetchSessionStatus_Then_ReturnCompleted() async throws {
         
         let mock = MockHellgateClient {
-            .success(.init(data: [:], nextAction: nil, status: "success"))
+            .success(.init(data: nil, nextAction: nil, status: "success"))
         } competeTokenizeCard: {
             .failure(FakeError.error)
         }
@@ -67,7 +67,7 @@ final class HellgateTests: XCTestCase {
     func test_Given_InitHellgate_When_FetchSessionStatus_Then_ReturnUnknown() async throws {
 
         let mock = MockHellgateClient {
-            .success(.init(data: [:], nextAction: nil, status: nil))
+            .success(.init(data: nil, nextAction: nil, status: nil))
         } competeTokenizeCard: {
             .failure(FakeError.error)
         }

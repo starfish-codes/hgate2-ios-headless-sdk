@@ -6,19 +6,24 @@ public struct SessionResponse: Decodable {
         case status
     }
 
-    let data: [String: String]?
+    let data: TokenData?
     let nextAction: NextAction?
     let status: String?
 
-    //    struct TokenId: Decodable {
-    //        let tokenId: String
-    //    }
-    //
-    //    struct TokenizationParam: Decodable {
-    //        let apiKey: String
-    //        let provider: Provider
-    //        let baseUrl: String
-    //    }
+    struct TokenData: Decodable {
+        let tokenId: String?
+
+        let apiKey: String?
+        let provider: Provider?
+        let baseUrl: String?
+
+        enum CodingKeys: String, CodingKey {
+            case tokenId = "token_id"
+            case apiKey = "api_key"
+            case provider
+            case baseUrl = "base_url"
+        }
+    }
 
     enum Provider: String, Decodable {
         case external = "basis_theory"

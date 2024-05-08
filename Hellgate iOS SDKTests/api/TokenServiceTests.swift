@@ -58,11 +58,12 @@ final class TokenServiceTests: XCTestCase {
         let hellgateClient = MockHellgateClient {
             .success(
                 .init(
-                    data: [
-                        "provider": "external",
-                        "api_key": "key",
-                        "base_url": "https://api-reference.hellgate.io"
-                    ],
+                    data: SessionResponse.TokenData(
+                        tokenId: nil,
+                        apiKey: "key",
+                        provider: .external,
+                        baseUrl: "https://api-reference.hellgate.io"
+                    ),
                     nextAction: .tokenize_card,
                     status: nil
                 )
@@ -70,9 +71,12 @@ final class TokenServiceTests: XCTestCase {
         } competeTokenizeCard: {
             .success(
                 .init(
-                    data: [
-                        "token_id": "1"
-                    ],
+                    data: SessionResponse.TokenData(
+                        tokenId: "1",
+                        apiKey: nil,
+                        provider: nil,
+                        baseUrl: nil
+                    ),
                     nextAction: nil,
                     status: "complete"
                 )
@@ -105,11 +109,12 @@ final class TokenServiceTests: XCTestCase {
         let hellgateClient = MockHellgateClient {
             .success(
                 .init(
-                    data: [
-                        "provider": "guardian",
-                        "api_key": "key",
-                        "base_url": "https://api-reference.hellgate.io"
-                    ],
+                    data:  SessionResponse.TokenData(
+                        tokenId: nil,
+                        apiKey: "key",
+                        provider: .guardian,
+                        baseUrl: "https://api-reference.hellgate.io"
+                    ),
                     nextAction: .tokenize_card,
                     status: nil
                 )
@@ -117,9 +122,12 @@ final class TokenServiceTests: XCTestCase {
         } competeTokenizeCard: {
             .success(
                 .init(
-                    data: [
-                        "token_id": "1"
-                    ],
+                    data: SessionResponse.TokenData(
+                        tokenId: "1",
+                        apiKey: nil,
+                        provider: nil,
+                        baseUrl: nil
+                    ),
                     nextAction: nil,
                     status: "complete"
                 )
@@ -147,11 +155,12 @@ final class TokenServiceTests: XCTestCase {
         let hellgateClient = MockHellgateClient {
             .success(
                 .init(
-                    data: [
-                        "provider": "external",
-                        "api_key": "key",
-                        "base_url": "https://api-reference.hellgate.io"
-                    ],
+                    data: SessionResponse.TokenData(
+                        tokenId: nil,
+                        apiKey: "key",
+                        provider: .external,
+                        baseUrl: "https://api-reference.hellgate.io"
+                    ),
                     nextAction: .tokenize_card,
                     status: nil
                 )
@@ -159,9 +168,12 @@ final class TokenServiceTests: XCTestCase {
         } competeTokenizeCard: {
             .success(
                 .init(
-                    data: [
-                        "token_id": "1"
-                    ],
+                    data: SessionResponse.TokenData(
+                        tokenId: "1",
+                        apiKey: nil,
+                        provider: nil,
+                        baseUrl: nil
+                    ),
                     nextAction: nil,
                     status: "complete"
                 )
@@ -189,11 +201,12 @@ final class TokenServiceTests: XCTestCase {
         let hellgateClient = MockHellgateClient {
             .success(
                 .init(
-                    data: [
-                        "provider": "guardian",
-                        "api_key": "key",
-                        "base_url": "https://api-reference.hellgate.io"
-                    ],
+                    data: SessionResponse.TokenData(
+                        tokenId: nil,
+                        apiKey: "key",
+                        provider: .guardian,
+                        baseUrl: "https://api-reference.hellgate.io"
+                    ),
                     nextAction: .tokenize_card,
                     status: nil
                 )
@@ -201,9 +214,12 @@ final class TokenServiceTests: XCTestCase {
         } competeTokenizeCard: {
             .success(
                 .init(
-                    data: [
-                        "token_id": "1"
-                    ],
+                    data: SessionResponse.TokenData(
+                        tokenId: "1",
+                        apiKey: nil,
+                        provider: nil,
+                        baseUrl: nil
+                    ),
                     nextAction: nil,
                     status: "complete"
                 )
@@ -231,11 +247,12 @@ final class TokenServiceTests: XCTestCase {
         let hellgateClient = MockHellgateClient {
             .success(
                 .init(
-                    data: [
-                        "provider": "unknown",
-                        "api_key": "key",
-                        "base_url": "https://api-reference.hellgate.io"
-                    ],
+                    data: SessionResponse.TokenData(
+                        tokenId: nil,
+                        apiKey: "key",
+                        provider: nil,
+                        baseUrl: "https://api-reference.hellgate.io"
+                    ),
                     nextAction: .tokenize_card,
                     status: nil
                 )
@@ -243,9 +260,12 @@ final class TokenServiceTests: XCTestCase {
         } competeTokenizeCard: {
             .success(
                 .init(
-                    data: [
-                        "token_id": "1"
-                    ],
+                    data: SessionResponse.TokenData(
+                        tokenId: "1",
+                        apiKey: nil,
+                        provider: nil,
+                        baseUrl: nil
+                    ),
                     nextAction: nil,
                     status: "complete"
                 )
