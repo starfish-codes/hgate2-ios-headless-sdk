@@ -42,16 +42,33 @@ class CardHandle: CardHandler {
 
         let cardNumber = cardNumberView.value
         let cvc = cvcView.value
-        let year = String(expiryView.value.suffix(2))
-        let month = String(expiryView.value.prefix(2))
+        let yearString = String(expiryView.value.suffix(2))
+        let monthString = String(expiryView.value.prefix(2))
 
-        // TODO: Extract out validation from fields and apply here
+        let brand = CardBrand.first(from: cardNumber).details
+
+        guard !cardNumber.isEmpty, brand.isValidLength(cardNumber: cardNumber) else {
+            return .failure(.invalidCardNumber)
+        }
+
+        guard !cvc.isEmpty, brand.isValidLength(cvc: cvc) else {
+            return .failure(.invalidCvcNumber)
+        }
+
+        guard !monthString.isEmpty, let month = Int(monthString), (1...12).contains(month) else {
+            return .failure(.invalidExpiryDate)
+        }
+
+        let thisYear = Calendar.current.component(.year, from: .now) % 100
+        guard !yearString.isEmpty, let year = Int(yearString), (thisYear...99).contains(year) else {
+            return .failure(.invalidExpiryDate)
+        }
 
         return .success(
             CardData(
                 cardNumber: cardNumber,
-                year: year,
-                month: month,
+                year: yearString,
+                month: monthString,
                 cvc: cvc
             )
         )

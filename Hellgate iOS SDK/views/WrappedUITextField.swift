@@ -47,6 +47,7 @@ public struct WrappedUITextField: UIViewRepresentable {
 
         textField.text = self.formatter?.string(for: value)
 
+
         // Toolbar for keyboard
         let inputView = UIToolbar()
         inputView.sizeToFit()
@@ -170,22 +171,25 @@ public struct WrappedUITextField: UIViewRepresentable {
 
 #Preview {
 
-    var data = "12341234123"
+    var data = ""
     let bind = Binding {
         data
     } set: { value in
         data = value
     }
 
-    return WrappedUITextField(
-        value: bind,
-        placeholder: "Card Number",
-        fontSize: 16,
-        foregroundColor: .black,
-        backgroundColor: .white,
-        keyboardType: .numberPad,
-        formatter: CardNumberFormatter()
-    )
+    return VStack {
+        WrappedUITextField(
+            value: bind,
+            placeholder: "Card Number",
+            fontSize: 16,
+            foregroundColor: .black,
+            backgroundColor: .white,
+            keyboardType: .numberPad,
+            formatter: CardNumberFormatter()
+        )
+        Spacer()
+    }
 }
 
 #endif
