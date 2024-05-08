@@ -4,13 +4,13 @@ protocol ExTokenizeClientAPI {
 
 class ExTokenizeClient: ExTokenizeClientAPI {
     private let baseURL: URL
-    private let client: HttpClient
+    private let client: HttpClientSession
 
-    enum ExTokenizeClient: Error {
+    enum ExTokenizeError: Error {
         case invalidCardData
     }
 
-    init(baseURL: URL, client: HttpClient) {
+    init(baseURL: URL, client: HttpClientSession) {
         self.baseURL = baseURL
         self.client = client
     }
@@ -19,7 +19,9 @@ class ExTokenizeClient: ExTokenizeClientAPI {
         var url = self.baseURL
         url.appendPathComponent("tokenize")
 
-        if let body = GuardTokenizeRequest(cardData: cardData) {
+        if let cardDataRequest = ExTokenizeRequest.CardDataRequest(cardData: cardData) {
+            let body = ExTokenizeRequest(cardData: cardDataRequest)
+
             return await self.client.request(
                 method: "POST",
                 url: url,
@@ -27,13 +29,62 @@ class ExTokenizeClient: ExTokenizeClientAPI {
                 headers: ["BT-API-KEY": apiKey]
             )
         } else {
-            return .failure(ExTokenizeClient.invalidCardData)
+            return .failure(ExTokenizeError.invalidCardData)
         }
     }
 }
 
 struct ExTokenizeRequest: Encodable {
-    // TODO:
+    let data: CardDataRequest
+    let type: String
+    let mask: Mask
+
+    init(cardData: CardDataRequest, type: String = "card") {
+        self.data = cardData
+        self.type = type
+        self.mask = Mask(
+            expirationMonth: String(data.expiryMonth),
+            expirationYear: String(data.expiryYear),
+            number: data.accountNumber
+        )
+    }
+
+    struct CardDataRequest: Encodable {
+        let expiryMonth: Int
+        let expiryYear: Int
+        let accountNumber: String
+        let securityCode: String
+
+        enum CodingKeys: String, CodingKey {
+            case expiryMonth = "expiry_month"
+            case expiryYear = "expiry_year"
+            case accountNumber = "account_number"
+            case securityCode = "issuer_identification_number"
+        }
+
+        init?(cardData: CardData) {
+            guard let month = Int(cardData.month), let year = Int(cardData.year) else {
+                return nil
+            }
+
+            self.accountNumber = cardData.cardNumber
+            self.securityCode = cardData.cvc
+            self.expiryMonth = month
+            self.expiryYear = year + 2000
+        }
+    }
+
+    struct Mask: Encodable {
+        let expirationMonth: String
+        let expirationYear: String
+        let number: String
+
+        enum CodingKeys: String, CodingKey {
+            case expirationMonth = "expiration_month"
+            case expirationYear = "expiration_year"
+            case number
+        }
+    }
 }
 
 struct ExTokenizeResponse: Decodable {

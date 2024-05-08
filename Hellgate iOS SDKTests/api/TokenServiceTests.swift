@@ -3,13 +3,26 @@ import XCTest
 
 final class TokenServiceTests: XCTestCase {
 
-    func test_Given_() async {
-        let baseURL = URL(string: "https://api-reference.hellgate.io")!
+    struct FakeError: Error {}
+
+    func test_Given_IncorrectSessionStatus_When_Tokenize_Then_Fail() async {
+        _ = URL(string: "https://api-reference.hellgate.io")!
         let client = HttpClient()
-        let hellgateClient = HellgateClient(baseURL: baseURL, client: client)
+        let hellgateClient = MockHellgateClient {
+            .failure(FakeError())
+        } competeTokenizeCard: {
+            .failure(FakeError())
+        }
+
         let tokenService = TokenService(hellgateClient: hellgateClient, client: client)
 
         let cardData = CardData(cardNumber: "", year: "", month: "", cvc: "")
-        _ = await tokenService.tokenize(sessionId: "", cardData: cardData, additionalData: [:])
+        let result = await tokenService.tokenize(sessionId: "", cardData: cardData, additionalData: [:])
+
+        switch result {
+        case .success(_): XCTFail()
+        case .failure(_):
+            break
+        }
     }
 }

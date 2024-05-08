@@ -12,9 +12,9 @@ protocol HellgateClientAPI {
 
 class HellgateClient: HellgateClientAPI {
     private let baseURL: URL
-    private let client: HttpClient
+    private let client: HttpClientSession
 
-    init(baseURL: URL, client: HttpClient) {
+    init(baseURL: URL, client: HttpClientSession) {
         self.baseURL = baseURL
         self.client = client
     }
@@ -24,7 +24,7 @@ class HellgateClient: HellgateClientAPI {
         url.appendPathComponent("sessions")
         url.appendPathComponent(sessionId)
 
-        return await self.client.request(method: "GET", url: url)
+        return await self.client.request(method: "GET", url: url, headers: [:])
     }
 
     func completeTokenizeCard(
@@ -45,6 +45,6 @@ class HellgateClient: HellgateClientAPI {
                 )
             )
         )
-        return await self.client.request(method: "POST", url: url, body: body)
+        return await self.client.request(method: "POST", url: url, body: body, headers: [:])
     }
 }

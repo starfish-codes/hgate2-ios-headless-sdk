@@ -172,9 +172,6 @@ extension CardNumberView {
 
 #Preview {
 
-    var defaultState = ComponentState.blank
-    let defaultStateBind = Binding { defaultState } set: { state in defaultState = state }
-
     var viewState = ViewState(state: .blank)
     let viewStateBind = Binding { viewState } set: { state in viewState = state }
 

@@ -1,4 +1,4 @@
-public enum ComponentState {
+public enum ComponentState: String {
     case complete
     case incomplete
     case blank

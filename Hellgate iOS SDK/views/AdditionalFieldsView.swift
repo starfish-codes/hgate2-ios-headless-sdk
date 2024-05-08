@@ -77,9 +77,6 @@ extension AdditionalFieldsView {
 
 #Preview {
 
-    var defaultState = ComponentState.blank
-    let defaultStateBind = Binding { defaultState } set: { state in defaultState = state }
-
     return ScrollView {
         Text("Default")
         AdditionalFieldsView(type: .CARDHOLDER_NAME)

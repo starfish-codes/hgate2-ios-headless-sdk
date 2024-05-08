@@ -4,18 +4,21 @@ protocol GuardianClientAPI {
 
 class GuardianClient: GuardianClientAPI {
     private let baseURL: URL
-    private let client: HttpClient
+    private let client: HttpClientSession
 
     enum GuardianError: Error {
         case cardDataYearMonthParsing
     }
 
-    init(baseURL: URL, client: HttpClient) {
+    init(baseURL: URL, client: HttpClientSession) {
         self.baseURL = baseURL
         self.client = client
     }
 
-    func tokenizeCard(apiKey: String, cardData: CardData) async -> Result<GuardianceTokenizeResponse, Error> {
+    func tokenizeCard(
+        apiKey: String,
+        cardData: CardData
+    ) async -> Result<GuardianceTokenizeResponse, Error> {
         var url = self.baseURL
         url.appendPathComponent("tokenize")
 

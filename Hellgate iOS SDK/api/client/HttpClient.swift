@@ -4,7 +4,22 @@ protocol URLDataTask {
 
 extension URLSession: URLDataTask {}
 
-class HttpClient {
+protocol HttpClientSession {
+    func request<Response: Decodable>(
+        method: String,
+        url: URL,
+        headers: [String: String]
+    ) async -> Result<Response, Error>
+
+    func request<Body: Encodable, Response: Decodable>(
+        method: String,
+        url: URL,
+        body: Body?,
+        headers: [String: String]
+    ) async -> Result<Response, Error>
+}
+
+class HttpClient: HttpClientSession {
     private let session: URLDataTask
 
     init(session: URLDataTask = URLSession.shared) {
