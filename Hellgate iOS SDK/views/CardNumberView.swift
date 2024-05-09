@@ -12,15 +12,9 @@ private enum Constant {
     static let DEFAULT_COLOR = Color.black
 }
 
-public enum ComponentState {
-    case complete
-    case incomplete
-    case blank
-    case invalid
-}
-
 public class CardNumberViewViewModel: ObservableObject {
-    @Binding var state: ComponentState
+    @Binding var viewState: ViewState
+
     @Published var value: String = ""
     @Published var color: Color = .black
     @Published var cardBrand: CardBrand = .unknown
@@ -29,15 +23,15 @@ public class CardNumberViewViewModel: ObservableObject {
     var cancellable: AnyCancellable?
 
     public init(
-        state: Binding<ComponentState>,
+        viewState: Binding<ViewState>,
         value: String,
         cardBrand: CardBrand,
         queue: DispatchQueue = .main
     ) {
-        self._state = state
         self.value = value
         self.cardBrand = cardBrand
         self.queue = queue
+        self._viewState = viewState
 
         cancellable = self.$value
             .sink { [weak self] newValue in
@@ -54,8 +48,8 @@ public class CardNumberViewViewModel: ObservableObject {
             print("Value: \(self.value) -> \(value), brand: \(self.cardBrand)")
 #endif
 
-            self.state = self.state(brand: self.cardBrand, value: value)
-            self.color = self.color(state: self.state)
+            self.viewState = self.state(brand: self.cardBrand, value: value)
+            self.color = self.color(state: self.viewState.state)
         }
     }
 
@@ -67,9 +61,9 @@ public class CardNumberViewViewModel: ObservableObject {
         }
     }
 
-    private func state(brand: CardBrand = .unknown, value: String) -> ComponentState {
-        guard !value.isEmpty else { return .blank }
-        guard brand != .unknown else { return .incomplete }
+    private func state(brand: CardBrand = .unknown, value: String) -> ViewState {
+        guard !value.isEmpty else { return ViewState(state: .blank, value: value) }
+        guard brand != .unknown else { return ViewState(state: .incomplete, value: value) }
 
         let details = brand.details
 
@@ -82,19 +76,19 @@ public class CardNumberViewViewModel: ObservableObject {
         let full = isDigitLimit && value.count == numberAllowedDigits
 
         if incomplete {
-            return .incomplete
+            return ViewState(state: .incomplete, value: value)
         } else if invalid {
-            return .invalid
+            return ViewState(state: .invalid, value: value)
         } else if full {
-            return .complete
+            return ViewState(state: .complete, value: value)
         }
 
-        return .blank
+        return ViewState(state: .blank, value: value)
     }
 }
 
 public struct CardNumberView: View {
-    @StateObject private var viewModel: CardNumberViewViewModel
+    @StateObject var viewModel: CardNumberViewViewModel
 
     let image: ImagePosition
     let padding: CGFloat
@@ -109,7 +103,7 @@ public struct CardNumberView: View {
     }
 
     public init(
-        state: Binding<ComponentState>,
+        viewState: Binding<ViewState>,
         image: ImagePosition,
         padding: CGFloat = 0,
         onBegin: (() -> Void)? = nil,
@@ -117,7 +111,7 @@ public struct CardNumberView: View {
     ) {
         self._viewModel = StateObject(
             wrappedValue: CardNumberViewViewModel(
-                state: state,
+                viewState: viewState,
                 value: "",
                 cardBrand: .unknown
             )
@@ -178,42 +172,42 @@ extension CardNumberView {
 
 #Preview {
 
-    var defaultState = ComponentState.blank
-    let defaultStateBind = Binding { defaultState } set: { state in defaultState = state }
+    var viewState = ViewState(state: .blank)
+    let viewStateBind = Binding { viewState } set: { state in viewState = state }
 
     return ScrollView {
         Text("Default")
         CardNumberView(
-            state: defaultStateBind,
+            viewState: viewStateBind,
             image: .leading
         )
 
         CardNumberView(
-            state: defaultStateBind,
+            viewState: viewStateBind,
             image: .trailing
         )
 
         CardNumberView(
-            state: defaultStateBind,
+            viewState: viewStateBind,
             image: .hidden
         )
 
         Text("Border applied")
 
         CardNumberView(
-            state: defaultStateBind,
+            viewState: viewStateBind,
             image: .leading
         )
         .border()
 
         CardNumberView(
-            state: defaultStateBind,
+            viewState: viewStateBind,
             image: .trailing
         )
         .border()
 
         CardNumberView(
-            state: defaultStateBind,
+            viewState: viewStateBind,
             image: .hidden
         )
         .border()

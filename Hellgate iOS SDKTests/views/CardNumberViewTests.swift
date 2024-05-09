@@ -5,7 +5,7 @@ import XCTest
 final class CardNumberViewTests: XCTestCase {
 
     private func viewModel() -> (CardNumberViewViewModel, DispatchQueue) {
-        var state = ComponentState.blank
+        var state = ViewState(state: .blank)
         let binding = Binding {
             state
         } set: { newState in
@@ -15,7 +15,7 @@ final class CardNumberViewTests: XCTestCase {
         let queue = DispatchQueue(label: "sync")
 
         return (CardNumberViewViewModel(
-            state: binding,
+            viewState: binding,
             value: "",
             cardBrand: .unknown,
             queue: queue
@@ -29,7 +29,7 @@ final class CardNumberViewTests: XCTestCase {
         viewModel.value = ""
 
         queue.sync {
-            XCTAssertEqual(viewModel.state, .blank)
+            XCTAssertEqual(viewModel.viewState.state, .blank)
             XCTAssertEqual(viewModel.color, Color.black)
         }
     }
@@ -40,7 +40,7 @@ final class CardNumberViewTests: XCTestCase {
         viewModel.value = "3900000000001235"
 
         queue.sync {
-            XCTAssertEqual(viewModel.state, .complete)
+            XCTAssertEqual(viewModel.viewState.state, .complete)
             XCTAssertEqual(viewModel.color, Color.blue)
         }
     }
@@ -51,7 +51,7 @@ final class CardNumberViewTests: XCTestCase {
         viewModel.value = "3900000000001234"
         
         queue.sync {
-            XCTAssertEqual(viewModel.state, .invalid)
+            XCTAssertEqual(viewModel.viewState.state, .invalid)
             XCTAssertEqual(viewModel.color, Color.red)
         }
     }
@@ -62,7 +62,7 @@ final class CardNumberViewTests: XCTestCase {
         viewModel.value = "3900000000001"
 
         queue.sync {
-            XCTAssertEqual(viewModel.state, .incomplete)
+            XCTAssertEqual(viewModel.viewState.state, .incomplete)
         }
     }
 
@@ -72,7 +72,7 @@ final class CardNumberViewTests: XCTestCase {
         viewModel.value = "1234"
 
         queue.sync {
-            XCTAssertEqual(viewModel.state, .incomplete)
+            XCTAssertEqual(viewModel.viewState.state, .incomplete)
         }
     }
 }

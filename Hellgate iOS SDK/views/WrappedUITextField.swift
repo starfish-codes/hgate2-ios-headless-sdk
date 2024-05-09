@@ -126,12 +126,11 @@ public struct WrappedUITextField: UIViewRepresentable {
             replacementString string: String
         ) -> Bool {
 
-
-            var text = textField.text ?? ""
-            text = (text as NSString).replacingCharacters(in: range, with: string)
+            var changedFormattedText = textField.text ?? ""
+            changedFormattedText = (changedFormattedText as NSString).replacingCharacters(in: range, with: string)
 
 #if DEBUG
-            print("Text should change - \(textField.text ?? "NIL") to \(text)")
+            print("Text should change - \(textField.text ?? "NIL") to \(changedFormattedText)")
 #endif
 
             guard let formatter = self.formatter else {
@@ -142,17 +141,35 @@ public struct WrappedUITextField: UIViewRepresentable {
             return withUnsafeMutablePointer(to: &result) { mut in
                 let object = AutoreleasingUnsafeMutablePointer<AnyObject?>(mut)
 
-                if formatter.getObjectValue(object, for: text, errorDescription: nil) {
+                if formatter.getObjectValue(object, for: changedFormattedText, errorDescription: nil) {
+
+                    let newUnformattedText = object.pointee as? String ?? ""
+
                     #if DEBUG
-                    print("Unformat - \(String(describing: object.pointee))")
+                    print("Unformat - \(newUnformattedText)")
                     #endif
 
-                    if let formattedText = formatter.string(for: object.pointee) {
-                        textField.text = formattedText
-                        value = object.pointee as? String ?? ""
+                    if let newFormattedText = formatter.string(for: object.pointee) {
+
+                        let cursorLocation = textField.position(
+                            from: textField.beginningOfDocument,
+                            offset: range.location + string.count
+                        )
+
+                        textField.text = newFormattedText
+
+                        if let cursorLocation = cursorLocation {
+                            let textRange = textField.textRange(
+                                from: cursorLocation,
+                                to: cursorLocation
+                            )
+                            textField.selectedTextRange = textRange
+                        }
+
+                        value = newUnformattedText
                         return false
                     } else {
-                        print("Could not format \(String(describing: object.pointee))")
+                        print("Could not format \(newUnformattedText)")
                     }
                 } else {
                     print("Error formattting")
@@ -171,22 +188,25 @@ public struct WrappedUITextField: UIViewRepresentable {
 
 #Preview {
 
-    var data = "12341234123"
+    var data = ""
     let bind = Binding {
         data
     } set: { value in
         data = value
     }
 
-    return WrappedUITextField(
-        value: bind,
-        placeholder: "Card Number",
-        fontSize: 16,
-        foregroundColor: .black,
-        backgroundColor: .white,
-        keyboardType: .numberPad,
-        formatter: CardNumberFormatter()
-    )
+    return VStack {
+        WrappedUITextField(
+            value: bind,
+            placeholder: "Card Number",
+            fontSize: 16,
+            foregroundColor: .black,
+            backgroundColor: .white,
+            keyboardType: .numberPad,
+            formatter: CardNumberFormatter()
+        )
+        Spacer()
+    }
 }
 
 #endif

@@ -7,13 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D0E6EE72BE0DD6800D7EE5A /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0E6EE62BE0DD6800D7EE5A /* HttpClient.swift */; };
+		4D0E6EEB2BE2567000D7EE5A /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0E6EEA2BE2567000D7EE5A /* ViewState.swift */; };
+		4D153AD82BE4D0A90007603D /* TokenServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D153AD72BE4D0A90007603D /* TokenServiceTests.swift */; };
+		4D26303E2BEB87F1006A2E7D /* MockClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D26303D2BEB87F1006A2E7D /* MockClient.swift */; };
+		4D2630402BEB88B7006A2E7D /* ExTokenizeClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D26303F2BEB88B7006A2E7D /* ExTokenizeClientTests.swift */; };
+		4D2630422BEB8AB8006A2E7D /* MockHellgateClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2630412BEB8AB8006A2E7D /* MockHellgateClient.swift */; };
+		4D2630442BEB8E23006A2E7D /* CardHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2630432BEB8E23006A2E7D /* CardHandlerTests.swift */; };
+		4D2630462BEB909E006A2E7D /* MockTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2630452BEB909E006A2E7D /* MockTokenService.swift */; };
+		4D2D4AAC2BE4BE670015557F /* HellgateClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2D4AAB2BE4BE670015557F /* HellgateClientTests.swift */; };
 		4D380D572BDBA7B2005251EF /* CardNumberViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D380D562BDBA7B2005251EF /* CardNumberViewTests.swift */; };
+		4D43B17F2BE375FA006B58B6 /* HellgateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D43B17E2BE375FA006B58B6 /* HellgateTests.swift */; };
 		4D54F8422BDBBBEB00CC048C /* WrappedUITextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D54F8412BDBBBEB00CC048C /* WrappedUITextFieldTests.swift */; };
 		4D5A48392BDF9C5E00E27E6B /* CvcView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5A48382BDF9C5E00E27E6B /* CvcView.swift */; };
 		4D5A483B2BDF9DC200E27E6B /* CvcFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5A483A2BDF9DC200E27E6B /* CvcFormatter.swift */; };
 		4D5A483D2BDFA39100E27E6B /* CvcViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5A483C2BDFA39100E27E6B /* CvcViewTests.swift */; };
 		4D5A483F2BDFA50700E27E6B /* CvcFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5A483E2BDFA50700E27E6B /* CvcFormatterTests.swift */; };
 		4D5A48412BDFAC9700E27E6B /* AdditionalFieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5A48402BDFAC9700E27E6B /* AdditionalFieldsView.swift */; };
+		4D5A48442BDFB39200E27E6B /* Hellgate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5A48432BDFB39200E27E6B /* Hellgate.swift */; };
+		4D6503FA2BE25ADB000AEFD7 /* CardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6503F92BE25ADB000AEFD7 /* CardHandler.swift */; };
+		4D6503FC2BE25AFC000AEFD7 /* SessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6503FB2BE25AFC000AEFD7 /* SessionResponse.swift */; };
+		4D6503FE2BE25B2C000AEFD7 /* TokenizeCardResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6503FD2BE25B2C000AEFD7 /* TokenizeCardResponse.swift */; };
+		4D6504002BE25BA3000AEFD7 /* SessionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6503FF2BE25BA3000AEFD7 /* SessionState.swift */; };
+		4D6504022BE25CEE000AEFD7 /* CardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6504012BE25CEE000AEFD7 /* CardData.swift */; };
+		4D6504042BE260B7000AEFD7 /* TokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6504032BE260B7000AEFD7 /* TokenService.swift */; };
+		4D6504062BE263D0000AEFD7 /* InvalidSessionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6504052BE263D0000AEFD7 /* InvalidSessionState.swift */; };
+		4D6504082BE26617000AEFD7 /* HellgateClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6504072BE26617000AEFD7 /* HellgateClient.swift */; };
+		4D65040B2BE268A3000AEFD7 /* GuardianClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D65040A2BE268A3000AEFD7 /* GuardianClient.swift */; };
+		4D65040D2BE2697E000AEFD7 /* SessionCompleteTokenizeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D65040C2BE2697E000AEFD7 /* SessionCompleteTokenizeCard.swift */; };
+		4D65040F2BE27C22000AEFD7 /* ExTokenizeClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D65040E2BE27C22000AEFD7 /* ExTokenizeClient.swift */; };
 		4DA140F02BDF7E40004045B1 /* ExpiryDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA140EF2BDF7E40004045B1 /* ExpiryDateView.swift */; };
 		4DA140F22BDF8240004045B1 /* ExpiryDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA140F12BDF8240004045B1 /* ExpiryDateFormatter.swift */; };
 		4DA140F42BDF8747004045B1 /* ExpiryDateViewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA140F32BDF8747004045B1 /* ExpiryDateViewViewModelTests.swift */; };
@@ -31,6 +53,7 @@
 		4DA7F02B2BD7B88100F51547 /* CardBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7F02A2BD7B88100F51547 /* CardBrand.swift */; };
 		4DA7F02D2BD7D83D00F51547 /* CardBrandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7F02C2BD7D83D00F51547 /* CardBrandTests.swift */; };
 		4DA7F02F2BD936CC00F51547 /* CardBrand+BrandDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7F02E2BD936CC00F51547 /* CardBrand+BrandDetails.swift */; };
+		4DD5D4DF2BEA23AB0004291A /* GuardianClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD5D4DE2BEA23AB0004291A /* GuardianClientTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,13 +67,35 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4D0E6EE62BE0DD6800D7EE5A /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
+		4D0E6EEA2BE2567000D7EE5A /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
+		4D153AD72BE4D0A90007603D /* TokenServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenServiceTests.swift; sourceTree = "<group>"; };
+		4D26303D2BEB87F1006A2E7D /* MockClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockClient.swift; sourceTree = "<group>"; };
+		4D26303F2BEB88B7006A2E7D /* ExTokenizeClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExTokenizeClientTests.swift; sourceTree = "<group>"; };
+		4D2630412BEB8AB8006A2E7D /* MockHellgateClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHellgateClient.swift; sourceTree = "<group>"; };
+		4D2630432BEB8E23006A2E7D /* CardHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHandlerTests.swift; sourceTree = "<group>"; };
+		4D2630452BEB909E006A2E7D /* MockTokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTokenService.swift; sourceTree = "<group>"; };
+		4D2D4AAB2BE4BE670015557F /* HellgateClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HellgateClientTests.swift; sourceTree = "<group>"; };
 		4D380D562BDBA7B2005251EF /* CardNumberViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardNumberViewTests.swift; sourceTree = "<group>"; };
+		4D43B17E2BE375FA006B58B6 /* HellgateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HellgateTests.swift; sourceTree = "<group>"; };
 		4D54F8412BDBBBEB00CC048C /* WrappedUITextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedUITextFieldTests.swift; sourceTree = "<group>"; };
 		4D5A48382BDF9C5E00E27E6B /* CvcView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CvcView.swift; sourceTree = "<group>"; };
 		4D5A483A2BDF9DC200E27E6B /* CvcFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CvcFormatter.swift; sourceTree = "<group>"; };
 		4D5A483C2BDFA39100E27E6B /* CvcViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CvcViewTests.swift; sourceTree = "<group>"; };
 		4D5A483E2BDFA50700E27E6B /* CvcFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CvcFormatterTests.swift; sourceTree = "<group>"; };
 		4D5A48402BDFAC9700E27E6B /* AdditionalFieldsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalFieldsView.swift; sourceTree = "<group>"; };
+		4D5A48432BDFB39200E27E6B /* Hellgate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hellgate.swift; sourceTree = "<group>"; };
+		4D6503F92BE25ADB000AEFD7 /* CardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHandler.swift; sourceTree = "<group>"; };
+		4D6503FB2BE25AFC000AEFD7 /* SessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionResponse.swift; sourceTree = "<group>"; };
+		4D6503FD2BE25B2C000AEFD7 /* TokenizeCardResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenizeCardResponse.swift; sourceTree = "<group>"; };
+		4D6503FF2BE25BA3000AEFD7 /* SessionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionState.swift; sourceTree = "<group>"; };
+		4D6504012BE25CEE000AEFD7 /* CardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardData.swift; sourceTree = "<group>"; };
+		4D6504032BE260B7000AEFD7 /* TokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenService.swift; sourceTree = "<group>"; };
+		4D6504052BE263D0000AEFD7 /* InvalidSessionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvalidSessionState.swift; sourceTree = "<group>"; };
+		4D6504072BE26617000AEFD7 /* HellgateClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HellgateClient.swift; sourceTree = "<group>"; };
+		4D65040A2BE268A3000AEFD7 /* GuardianClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianClient.swift; sourceTree = "<group>"; };
+		4D65040C2BE2697E000AEFD7 /* SessionCompleteTokenizeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCompleteTokenizeCard.swift; sourceTree = "<group>"; };
+		4D65040E2BE27C22000AEFD7 /* ExTokenizeClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExTokenizeClient.swift; sourceTree = "<group>"; };
 		4DA140EF2BDF7E40004045B1 /* ExpiryDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpiryDateView.swift; sourceTree = "<group>"; };
 		4DA140F12BDF8240004045B1 /* ExpiryDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpiryDateFormatter.swift; sourceTree = "<group>"; };
 		4DA140F32BDF8747004045B1 /* ExpiryDateViewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpiryDateViewViewModelTests.swift; sourceTree = "<group>"; };
@@ -69,6 +114,7 @@
 		4DA7F02A2BD7B88100F51547 /* CardBrand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBrand.swift; sourceTree = "<group>"; };
 		4DA7F02C2BD7D83D00F51547 /* CardBrandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBrandTests.swift; sourceTree = "<group>"; };
 		4DA7F02E2BD936CC00F51547 /* CardBrand+BrandDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardBrand+BrandDetails.swift"; sourceTree = "<group>"; };
+		4DD5D4DE2BEA23AB0004291A /* GuardianClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianClientTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +136,80 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D153AD92BE4D0B50007603D /* views */ = {
+			isa = PBXGroup;
+			children = (
+				4DA7F0242BD6B4A200F51547 /* CardNumberFormatterTests.swift */,
+				4D54F8412BDBBBEB00CC048C /* WrappedUITextFieldTests.swift */,
+				4DA140F52BDF8E1C004045B1 /* ExpiryDateFormatterTests.swift */,
+				4D5A483E2BDFA50700E27E6B /* CvcFormatterTests.swift */,
+				4D380D562BDBA7B2005251EF /* CardNumberViewTests.swift */,
+				4DA140F32BDF8747004045B1 /* ExpiryDateViewViewModelTests.swift */,
+				4D5A483C2BDFA39100E27E6B /* CvcViewTests.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		4D153ADA2BE4D0C30007603D /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				4DA7F0222BD6B17A00F51547 /* CardUtilsTests.swift */,
+				4DA7F02C2BD7D83D00F51547 /* CardBrandTests.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		4D153ADB2BE4D0D80007603D /* api */ = {
+			isa = PBXGroup;
+			children = (
+				4D43B17E2BE375FA006B58B6 /* HellgateTests.swift */,
+				4D2D4AAB2BE4BE670015557F /* HellgateClientTests.swift */,
+				4D153AD72BE4D0A90007603D /* TokenServiceTests.swift */,
+				4DD5D4DE2BEA23AB0004291A /* GuardianClientTests.swift */,
+				4D26303F2BEB88B7006A2E7D /* ExTokenizeClientTests.swift */,
+				4D2630432BEB8E23006A2E7D /* CardHandlerTests.swift */,
+			);
+			path = api;
+			sourceTree = "<group>";
+		};
+		4D26303C2BEB87E2006A2E7D /* mocks */ = {
+			isa = PBXGroup;
+			children = (
+				4D26303D2BEB87F1006A2E7D /* MockClient.swift */,
+				4D2630412BEB8AB8006A2E7D /* MockHellgateClient.swift */,
+				4D2630452BEB909E006A2E7D /* MockTokenService.swift */,
+			);
+			path = mocks;
+			sourceTree = "<group>";
+		};
+		4D5A48422BDFB37C00E27E6B /* api */ = {
+			isa = PBXGroup;
+			children = (
+				4D6504092BE266F3000AEFD7 /* client */,
+				4D5A48432BDFB39200E27E6B /* Hellgate.swift */,
+				4D6503F92BE25ADB000AEFD7 /* CardHandler.swift */,
+				4D6503FB2BE25AFC000AEFD7 /* SessionResponse.swift */,
+				4D6503FD2BE25B2C000AEFD7 /* TokenizeCardResponse.swift */,
+				4D6503FF2BE25BA3000AEFD7 /* SessionState.swift */,
+				4D6504012BE25CEE000AEFD7 /* CardData.swift */,
+				4D6504032BE260B7000AEFD7 /* TokenService.swift */,
+				4D6504052BE263D0000AEFD7 /* InvalidSessionState.swift */,
+				4D65040C2BE2697E000AEFD7 /* SessionCompleteTokenizeCard.swift */,
+			);
+			path = api;
+			sourceTree = "<group>";
+		};
+		4D6504092BE266F3000AEFD7 /* client */ = {
+			isa = PBXGroup;
+			children = (
+				4D0E6EE62BE0DD6800D7EE5A /* HttpClient.swift */,
+				4D6504072BE26617000AEFD7 /* HellgateClient.swift */,
+				4D65040A2BE268A3000AEFD7 /* GuardianClient.swift */,
+				4D65040E2BE27C22000AEFD7 /* ExTokenizeClient.swift */,
+			);
+			path = client;
+			sourceTree = "<group>";
+		};
 		4DA7EFAF2BD6995A00F51547 = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +231,7 @@
 		4DA7EFBB2BD6995B00F51547 /* Hellgate iOS SDK */ = {
 			isa = PBXGroup;
 			children = (
+				4D5A48422BDFB37C00E27E6B /* api */,
 				4DA7F01F2BD6AFD000F51547 /* utils */,
 				4DA7EFD32BD69B1100F51547 /* views */,
 				4DA7EFBC2BD6995B00F51547 /* Hellgate_iOS_SDK.h */,
@@ -123,15 +244,10 @@
 		4DA7EFC72BD6995B00F51547 /* Hellgate iOS SDKTests */ = {
 			isa = PBXGroup;
 			children = (
-				4DA7F0222BD6B17A00F51547 /* CardUtilsTests.swift */,
-				4DA7F0242BD6B4A200F51547 /* CardNumberFormatterTests.swift */,
-				4DA7F02C2BD7D83D00F51547 /* CardBrandTests.swift */,
-				4D380D562BDBA7B2005251EF /* CardNumberViewTests.swift */,
-				4D54F8412BDBBBEB00CC048C /* WrappedUITextFieldTests.swift */,
-				4DA140F32BDF8747004045B1 /* ExpiryDateViewViewModelTests.swift */,
-				4DA140F52BDF8E1C004045B1 /* ExpiryDateFormatterTests.swift */,
-				4D5A483C2BDFA39100E27E6B /* CvcViewTests.swift */,
-				4D5A483E2BDFA50700E27E6B /* CvcFormatterTests.swift */,
+				4D26303C2BEB87E2006A2E7D /* mocks */,
+				4D153ADB2BE4D0D80007603D /* api */,
+				4D153ADA2BE4D0C30007603D /* utils */,
+				4D153AD92BE4D0B50007603D /* views */,
 			);
 			path = "Hellgate iOS SDKTests";
 			sourceTree = "<group>";
@@ -147,6 +263,7 @@
 				4D5A48382BDF9C5E00E27E6B /* CvcView.swift */,
 				4D5A483A2BDF9DC200E27E6B /* CvcFormatter.swift */,
 				4D5A48402BDFAC9700E27E6B /* AdditionalFieldsView.swift */,
+				4D0E6EEA2BE2567000D7EE5A /* ViewState.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -224,6 +341,7 @@
 				TargetAttributes = {
 					4DA7EFB82BD6995A00F51547 = {
 						CreatedOnToolsVersion = 15.2;
+						LastSwiftMigration = 1520;
 					};
 					4DA7EFC22BD6995B00F51547 = {
 						CreatedOnToolsVersion = 15.2;
@@ -294,16 +412,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D5A483B2BDF9DC200E27E6B /* CvcFormatter.swift in Sources */,
+				4D6504002BE25BA3000AEFD7 /* SessionState.swift in Sources */,
 				4DA7EFBE2BD6995B00F51547 /* Hellgate_iOS_SDK.docc in Sources */,
+				4D6504042BE260B7000AEFD7 /* TokenService.swift in Sources */,
+				4D0E6EEB2BE2567000D7EE5A /* ViewState.swift in Sources */,
+				4D6503FE2BE25B2C000AEFD7 /* TokenizeCardResponse.swift in Sources */,
+				4D6504022BE25CEE000AEFD7 /* CardData.swift in Sources */,
 				4DA7F0212BD6AFDE00F51547 /* CardUtils.swift in Sources */,
+				4D6503FA2BE25ADB000AEFD7 /* CardHandler.swift in Sources */,
+				4D6503FC2BE25AFC000AEFD7 /* SessionResponse.swift in Sources */,
+				4D6504062BE263D0000AEFD7 /* InvalidSessionState.swift in Sources */,
 				4DA7F0272BD7A1CB00F51547 /* WrappedUITextField.swift in Sources */,
 				4DA140F02BDF7E40004045B1 /* ExpiryDateView.swift in Sources */,
 				4DA7EFD52BD69B2F00F51547 /* CardNumberView.swift in Sources */,
 				4D5A48392BDF9C5E00E27E6B /* CvcView.swift in Sources */,
+				4D5A48442BDFB39200E27E6B /* Hellgate.swift in Sources */,
+				4D0E6EE72BE0DD6800D7EE5A /* HttpClient.swift in Sources */,
+				4D65040B2BE268A3000AEFD7 /* GuardianClient.swift in Sources */,
 				4DA7EFD72BD6A08800F51547 /* CardNumberFormatter.swift in Sources */,
 				4D5A48412BDFAC9700E27E6B /* AdditionalFieldsView.swift in Sources */,
+				4D65040D2BE2697E000AEFD7 /* SessionCompleteTokenizeCard.swift in Sources */,
 				4DA140F22BDF8240004045B1 /* ExpiryDateFormatter.swift in Sources */,
 				4DA7F02F2BD936CC00F51547 /* CardBrand+BrandDetails.swift in Sources */,
+				4D65040F2BE27C22000AEFD7 /* ExTokenizeClient.swift in Sources */,
+				4D6504082BE26617000AEFD7 /* HellgateClient.swift in Sources */,
 				4DA7F02B2BD7B88100F51547 /* CardBrand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,14 +444,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D2630402BEB88B7006A2E7D /* ExTokenizeClientTests.swift in Sources */,
+				4D2D4AAC2BE4BE670015557F /* HellgateClientTests.swift in Sources */,
+				4D2630422BEB8AB8006A2E7D /* MockHellgateClient.swift in Sources */,
 				4DA7F0232BD6B17A00F51547 /* CardUtilsTests.swift in Sources */,
+				4DD5D4DF2BEA23AB0004291A /* GuardianClientTests.swift in Sources */,
+				4D2630462BEB909E006A2E7D /* MockTokenService.swift in Sources */,
 				4D54F8422BDBBBEB00CC048C /* WrappedUITextFieldTests.swift in Sources */,
 				4DA140F62BDF8E1C004045B1 /* ExpiryDateFormatterTests.swift in Sources */,
+				4D2630442BEB8E23006A2E7D /* CardHandlerTests.swift in Sources */,
 				4DA140F42BDF8747004045B1 /* ExpiryDateViewViewModelTests.swift in Sources */,
 				4D380D572BDBA7B2005251EF /* CardNumberViewTests.swift in Sources */,
 				4D5A483F2BDFA50700E27E6B /* CvcFormatterTests.swift in Sources */,
+				4D153AD82BE4D0A90007603D /* TokenServiceTests.swift in Sources */,
 				4DA7F0252BD6B4A200F51547 /* CardNumberFormatterTests.swift in Sources */,
+				4D43B17F2BE375FA006B58B6 /* HellgateTests.swift in Sources */,
 				4DA7F02D2BD7D83D00F51547 /* CardBrandTests.swift in Sources */,
+				4D26303E2BEB87F1006A2E7D /* MockClient.swift in Sources */,
 				4D5A483D2BDFA39100E27E6B /* CvcViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -463,6 +604,7 @@
 		4DA7EFCE2BD6995B00F51547 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -487,6 +629,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -495,6 +638,7 @@
 		4DA7EFCF2BD6995B00F51547 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;

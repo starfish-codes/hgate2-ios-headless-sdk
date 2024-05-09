@@ -14,13 +14,6 @@ class ExpiryDateFormatter: Formatter {
             }
         }
 
-        if string.count == 2,
-           let number = Int(string) {
-            if number > 12 {
-                return nil
-            }
-        }
-
         if string.count > 2 {
             var result = string
             result.insert(" ", at: string.index(string.startIndex, offsetBy: 2))

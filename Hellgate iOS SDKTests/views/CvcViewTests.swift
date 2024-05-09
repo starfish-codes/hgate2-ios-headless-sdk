@@ -5,7 +5,7 @@ import XCTest
 final class CvcViewModelTests: XCTestCase {
 
     private func viewModel(length: Cvc) -> (CvcViewViewModel, DispatchQueue) {
-        var state = ComponentState.blank
+        var state = ViewState(state: .blank)
         let binding = Binding {
             state
         } set: { newState in
@@ -15,7 +15,7 @@ final class CvcViewModelTests: XCTestCase {
         let queue = DispatchQueue(label: "sync")
 
         return (CvcViewViewModel(
-            state: binding,
+            viewState: binding,
             value: "",
             length: length,
             queue: queue
@@ -26,13 +26,13 @@ final class CvcViewModelTests: XCTestCase {
     func test_Given_Cvc_When_Init_Then_StateBlank() {
         let (viewModel, _) = viewModel(length: .cvc)
 
-        XCTAssertEqual(viewModel.state, .blank)
+        XCTAssertEqual(viewModel.viewState.state, .blank)
     }
 
     func test_Given_Cvv_When_Init_Then_StateBlank() {
         let (viewModel, _) = viewModel(length: .cvv)
 
-        XCTAssertEqual(viewModel.state, .blank)
+        XCTAssertEqual(viewModel.viewState.state, .blank)
     }
 
     func test_Given_Cvc_When_SomeValue_Then_Complete() {
@@ -40,7 +40,7 @@ final class CvcViewModelTests: XCTestCase {
 
         viewModel.value = "12"
         queue.sync {
-            XCTAssertEqual(viewModel.state, .incomplete)
+            XCTAssertEqual(viewModel.viewState.state, .incomplete)
         }
     }
 
@@ -49,7 +49,7 @@ final class CvcViewModelTests: XCTestCase {
 
         viewModel.value = "123"
         queue.sync {
-            XCTAssertEqual(viewModel.state, .incomplete)
+            XCTAssertEqual(viewModel.viewState.state, .incomplete)
         }
     }
 
@@ -58,7 +58,7 @@ final class CvcViewModelTests: XCTestCase {
 
         viewModel.value = "123"
         queue.sync {
-            XCTAssertEqual(viewModel.state, .complete)
+            XCTAssertEqual(viewModel.viewState.state, .complete)
         }
     }
 
@@ -67,7 +67,7 @@ final class CvcViewModelTests: XCTestCase {
 
         viewModel.value = "1234"
         queue.sync {
-            XCTAssertEqual(viewModel.state, .complete)
+            XCTAssertEqual(viewModel.viewState.state, .complete)
         }
     }
 }

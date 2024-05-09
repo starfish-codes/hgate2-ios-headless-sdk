@@ -27,7 +27,7 @@ public enum AdditionalFieldType: String {
 
 public struct AdditionalFieldsView: View {
     let type: AdditionalFieldType
-    @State private var text: String
+    @State var text: String
     let padding: CGFloat
 
     let onBegin: (() -> Void)?
@@ -76,9 +76,6 @@ extension AdditionalFieldsView {
 #if swift(>=5.9)
 
 #Preview {
-
-    var defaultState = ComponentState.blank
-    let defaultStateBind = Binding { defaultState } set: { state in defaultState = state }
 
     return ScrollView {
         Text("Default")

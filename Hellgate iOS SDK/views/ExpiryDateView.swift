@@ -13,7 +13,7 @@ private enum Constant {
 }
 
 public class ExpiryDateViewViewModel: ObservableObject {
-    @Binding var state: ComponentState
+    @Binding var viewState: ViewState
     @Published var value: String = ""
     @Published var color: Color = .black
     private let currentDate: Date
@@ -22,12 +22,12 @@ public class ExpiryDateViewViewModel: ObservableObject {
     var cancellable: AnyCancellable?
 
     public init(
-        state: Binding<ComponentState>,
+        viewState: Binding<ViewState>,
         value: String,
         currentDate: Date = .now,
         queue: DispatchQueue = .main
     ) {
-        self._state = state
+        self._viewState = viewState
         self.value = value
         self.currentDate = currentDate
         self.queue = queue
@@ -42,8 +42,8 @@ public class ExpiryDateViewViewModel: ObservableObject {
         queue.async { [weak self] in
             guard let self = self else { return }
 
-            self.state = self.state(value: value)
-            self.color = self.color(state: self.state)
+            self.viewState = self.state(value: value)
+            self.color = self.color(state: self.viewState.state)
         }
     }
 
@@ -55,13 +55,16 @@ public class ExpiryDateViewViewModel: ObservableObject {
         }
     }
 
-    private func state(value: String) -> ComponentState {
-        guard !value.isEmpty else { return .blank }
-        guard value.count == 4 else { return .incomplete }
+    private func state(value: String) -> ViewState {
+        guard !value.isEmpty else { return ViewState(state: .blank, value: value) }
+        guard value.count == 4 else { return ViewState(state: .incomplete, value: value) }
 
-        if let month = Int(value.prefix(2)),
-           let year = Int("20" + value.suffix(2)) {
+        guard let month = Int(value.prefix(2)),
+                (1...12).contains(month) else {
+            return ViewState(state: .invalid, value: value)
+        }
 
+        if let year = Int("20" + value.suffix(2)) {
             var components = DateComponents()
             components.month = month
             components.year = year
@@ -72,31 +75,31 @@ public class ExpiryDateViewViewModel: ObservableObject {
             // Allow cards that expire this month
             if let expiry = expiry {
                 if now.compare(expiry) == .orderedDescending {
-                    return .invalid
+                    return ViewState(state: .invalid, value: value)
                 }
             }
         }
 
-        return .complete
+        return ViewState(state: .complete, value: value)
     }
 }
 
 public struct ExpiryDateField: View {
-    @StateObject private var viewModel: ExpiryDateViewViewModel
+    @StateObject var viewModel: ExpiryDateViewViewModel
     let padding: CGFloat
 
     let onBegin: (() -> Void)?
     let onEnd: (() -> Void)?
 
     public init(
-        state: Binding<ComponentState>,
+        viewState: Binding<ViewState>,
         padding: CGFloat = 0,
         onBegin: (() -> Void)? = nil,
         onEnd: (() -> Void)? = nil
     ) {
         self._viewModel = StateObject(
             wrappedValue: ExpiryDateViewViewModel(
-                state: state,
+                viewState: viewState,
                 value: ""
             )
         )
@@ -136,19 +139,19 @@ extension ExpiryDateField {
 
 #Preview {
 
-    var defaultState = ComponentState.blank
+    var defaultState = ViewState(state: .blank)
     let defaultStateBind = Binding { defaultState } set: { state in defaultState = state }
 
     return ScrollView {
         Text("Default")
         ExpiryDateField(
-            state: defaultStateBind
+            viewState: defaultStateBind
         )
 
         Text("Border applied")
 
         ExpiryDateField(
-            state: defaultStateBind
+            viewState: defaultStateBind
         )
         .border()
     }
