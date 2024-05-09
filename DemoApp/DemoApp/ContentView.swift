@@ -57,12 +57,11 @@ struct ContentView: View {
 
                             Button("Tokenize") {
                                 Task {
-                                    viewModel.showTokenizeWaitingSpinner = true
                                     await viewModel.tokenize()
                                 }
                             }
                             .frame(height: 44)
-                            .disabled(viewModel.sessionId.isEmpty)
+                            .disabled(!viewModel.canTokenize)
                         }
                     }
 

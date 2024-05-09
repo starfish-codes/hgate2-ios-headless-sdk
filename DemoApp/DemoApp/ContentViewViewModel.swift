@@ -20,6 +20,13 @@ class ContentViewViewModel: ObservableObject {
 
     @Published var showTokenizeWaitingSpinner = false
 
+    var canTokenize: Bool {
+        !sessionId.isEmpty &&
+        cardNumberViewState.state == .complete &&
+        expiryViewState.state == .complete &&
+        cvcViewState.state == .complete
+    }
+
     // This called needs to be performed on your backend servers
     private func fetchSessionId() async -> String {
         var url = Self.sandboxURL
@@ -70,12 +77,15 @@ class ContentViewViewModel: ObservableObject {
         let result = await hellgate.cardHandler()
 
         if case let .success(handler) = result {
+            showTokenizeWaitingSpinner = true
+
             let response = await handler.tokenizeCard(
                 cardNumberViewState,
                 cvcViewState,
                 expiryViewState,
                 [:]
             )
+
             print(response)
 
             switch response {
@@ -84,6 +94,7 @@ class ContentViewViewModel: ObservableObject {
             case let .failure(err):
                 print(err.localizedDescription)
             }
+            showTokenizeWaitingSpinner = false
         }
 
         await sessionStatus()

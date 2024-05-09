@@ -59,9 +59,12 @@ public class ExpiryDateViewViewModel: ObservableObject {
         guard !value.isEmpty else { return ViewState(state: .blank, value: value) }
         guard value.count == 4 else { return ViewState(state: .incomplete, value: value) }
 
-        if let month = Int(value.prefix(2)),
-           let year = Int("20" + value.suffix(2)) {
+        guard let month = Int(value.prefix(2)),
+                (1...12).contains(month) else {
+            return ViewState(state: .invalid, value: value)
+        }
 
+        if let year = Int("20" + value.suffix(2)) {
             var components = DateComponents()
             components.month = month
             components.year = year
