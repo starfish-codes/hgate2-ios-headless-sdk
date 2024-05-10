@@ -1,24 +1,27 @@
-// swift-tools-version: 5.9
+// swift-tools-version: 5.5
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
-    name: "hellgate-ios-sdk",
-    platforms: [.iOS("15.0")],
+    name: "Hellgate-iOS-SDK",
+    platforms: [
+        .iOS("15.0")
+    ],
     products: [
         .library(
-            name: "hellgate-ios-sdk",
-            targets: ["hellgate-ios-sdk"])
+            name: "Hellgate-iOS-SDK",
+            targets: ["Hellgate-iOS-SDK"]
+        )
     ],
     targets: [
         .target(
-            name: "hellgate-ios-sdk",
+            name: "Hellgate-iOS-SDK",
             path: "./Hellgate iOS SDK/"
         ),
         .testTarget(
-            name: "hellgate-ios-sdkTests",
-            dependencies: ["hellgate-ios-sdk"],
+            name: "Hellgate-iOS-SDKTests",
+            dependencies: ["Hellgate-iOS-SDK"],
             path: "./Hellgate iOS SDKTests/"
         )
     ]

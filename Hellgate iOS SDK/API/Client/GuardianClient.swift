@@ -1,3 +1,5 @@
+import Foundation
+
 protocol GuardianClientAPI {
     func tokenizeCard(apiKey: String, cardData: CardData) async -> Result<GuardianceTokenizeResponse, Error>
 }

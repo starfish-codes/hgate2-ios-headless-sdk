@@ -125,7 +125,7 @@ public struct CardNumberView: View {
     public var body: some View {
         let imageView = Image(
             viewModel.cardBrand.details.icon,
-            bundle: .init(for: CardNumberFormatter.self as AnyClass)
+            bundle: .hellgateModule
         )
             .resizable()
             .aspectRatio(contentMode: .fit)

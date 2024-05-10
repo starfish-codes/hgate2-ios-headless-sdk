@@ -1,3 +1,5 @@
+import Foundation
+
 protocol URLDataTask {
     func data(for request: URLRequest, delegate: URLSessionTaskDelegate?) async throws -> (Data, URLResponse)
 }

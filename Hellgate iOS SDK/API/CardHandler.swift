@@ -1,3 +1,5 @@
+import Foundation
+
 enum CardDataValidationError: Error {
     case invalidCardNumber
     case invalidCvcNumber

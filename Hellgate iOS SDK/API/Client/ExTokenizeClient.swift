@@ -1,3 +1,5 @@
+import Foundation
+
 protocol ExTokenizeClientAPI {
     func tokenizeCard(apiKey: String, cardData: CardData) async -> Result<ExTokenizeResponse, Error>
 }

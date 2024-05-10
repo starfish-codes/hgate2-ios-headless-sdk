@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4D0E6EE72BE0DD6800D7EE5A /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0E6EE62BE0DD6800D7EE5A /* HttpClient.swift */; };
 		4D0E6EEB2BE2567000D7EE5A /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0E6EEA2BE2567000D7EE5A /* ViewState.swift */; };
+		4D0EE66D2BED019F004849DA /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0EE66C2BED019F004849DA /* Bundle.swift */; };
 		4D153AD82BE4D0A90007603D /* TokenServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D153AD72BE4D0A90007603D /* TokenServiceTests.swift */; };
 		4D26303E2BEB87F1006A2E7D /* MockClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D26303D2BEB87F1006A2E7D /* MockClient.swift */; };
 		4D2630402BEB88B7006A2E7D /* ExTokenizeClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D26303F2BEB88B7006A2E7D /* ExTokenizeClientTests.swift */; };
@@ -49,11 +50,11 @@
 		4DA7F0232BD6B17A00F51547 /* CardUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7F0222BD6B17A00F51547 /* CardUtilsTests.swift */; };
 		4DA7F0252BD6B4A200F51547 /* CardNumberFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7F0242BD6B4A200F51547 /* CardNumberFormatterTests.swift */; };
 		4DA7F0272BD7A1CB00F51547 /* WrappedUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7F0262BD7A1CB00F51547 /* WrappedUITextField.swift */; };
-		4DA7F0292BD7AE4800F51547 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DA7F0282BD7AE4800F51547 /* Media.xcassets */; };
 		4DA7F02B2BD7B88100F51547 /* CardBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7F02A2BD7B88100F51547 /* CardBrand.swift */; };
 		4DA7F02D2BD7D83D00F51547 /* CardBrandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7F02C2BD7D83D00F51547 /* CardBrandTests.swift */; };
 		4DA7F02F2BD936CC00F51547 /* CardBrand+BrandDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7F02E2BD936CC00F51547 /* CardBrand+BrandDetails.swift */; };
 		4DD5D4DF2BEA23AB0004291A /* GuardianClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD5D4DE2BEA23AB0004291A /* GuardianClientTests.swift */; };
+		4DF4E77C2BECFEA900AD1E78 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DF4E77A2BECFEA900AD1E78 /* Media.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 /* Begin PBXFileReference section */
 		4D0E6EE62BE0DD6800D7EE5A /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
 		4D0E6EEA2BE2567000D7EE5A /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
+		4D0EE66C2BED019F004849DA /* Bundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		4D153AD72BE4D0A90007603D /* TokenServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenServiceTests.swift; sourceTree = "<group>"; };
 		4D26303D2BEB87F1006A2E7D /* MockClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockClient.swift; sourceTree = "<group>"; };
 		4D26303F2BEB88B7006A2E7D /* ExTokenizeClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExTokenizeClientTests.swift; sourceTree = "<group>"; };
@@ -110,11 +112,11 @@
 		4DA7F0222BD6B17A00F51547 /* CardUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardUtilsTests.swift; sourceTree = "<group>"; };
 		4DA7F0242BD6B4A200F51547 /* CardNumberFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardNumberFormatterTests.swift; sourceTree = "<group>"; };
 		4DA7F0262BD7A1CB00F51547 /* WrappedUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedUITextField.swift; sourceTree = "<group>"; };
-		4DA7F0282BD7AE4800F51547 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		4DA7F02A2BD7B88100F51547 /* CardBrand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBrand.swift; sourceTree = "<group>"; };
 		4DA7F02C2BD7D83D00F51547 /* CardBrandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBrandTests.swift; sourceTree = "<group>"; };
 		4DA7F02E2BD936CC00F51547 /* CardBrand+BrandDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardBrand+BrandDetails.swift"; sourceTree = "<group>"; };
 		4DD5D4DE2BEA23AB0004291A /* GuardianClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianClientTests.swift; sourceTree = "<group>"; };
+		4DF4E77A2BECFEA900AD1E78 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,7 +184,7 @@
 			path = mocks;
 			sourceTree = "<group>";
 		};
-		4D5A48422BDFB37C00E27E6B /* api */ = {
+		4D5A48422BDFB37C00E27E6B /* API */ = {
 			isa = PBXGroup;
 			children = (
 				4D6504092BE266F3000AEFD7 /* client */,
@@ -196,7 +198,7 @@
 				4D6504052BE263D0000AEFD7 /* InvalidSessionState.swift */,
 				4D65040C2BE2697E000AEFD7 /* SessionCompleteTokenizeCard.swift */,
 			);
-			path = api;
+			path = API;
 			sourceTree = "<group>";
 		};
 		4D6504092BE266F3000AEFD7 /* client */ = {
@@ -231,12 +233,12 @@
 		4DA7EFBB2BD6995B00F51547 /* Hellgate iOS SDK */ = {
 			isa = PBXGroup;
 			children = (
-				4D5A48422BDFB37C00E27E6B /* api */,
-				4DA7F01F2BD6AFD000F51547 /* utils */,
-				4DA7EFD32BD69B1100F51547 /* views */,
+				4DF4E77B2BECFEA900AD1E78 /* Resources */,
+				4D5A48422BDFB37C00E27E6B /* API */,
+				4DA7F01F2BD6AFD000F51547 /* Utils */,
+				4DA7EFD32BD69B1100F51547 /* Views */,
 				4DA7EFBC2BD6995B00F51547 /* Hellgate_iOS_SDK.h */,
 				4DA7EFBD2BD6995B00F51547 /* Hellgate_iOS_SDK.docc */,
-				4DA7F0282BD7AE4800F51547 /* Media.xcassets */,
 			);
 			path = "Hellgate iOS SDK";
 			sourceTree = "<group>";
@@ -252,7 +254,7 @@
 			path = "Hellgate iOS SDKTests";
 			sourceTree = "<group>";
 		};
-		4DA7EFD32BD69B1100F51547 /* views */ = {
+		4DA7EFD32BD69B1100F51547 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				4DA7EFD42BD69B2F00F51547 /* CardNumberView.swift */,
@@ -265,17 +267,26 @@
 				4D5A48402BDFAC9700E27E6B /* AdditionalFieldsView.swift */,
 				4D0E6EEA2BE2567000D7EE5A /* ViewState.swift */,
 			);
-			path = views;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		4DA7F01F2BD6AFD000F51547 /* utils */ = {
+		4DA7F01F2BD6AFD000F51547 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				4D0EE66C2BED019F004849DA /* Bundle.swift */,
 				4DA7F0202BD6AFDE00F51547 /* CardUtils.swift */,
 				4DA7F02A2BD7B88100F51547 /* CardBrand.swift */,
 				4DA7F02E2BD936CC00F51547 /* CardBrand+BrandDetails.swift */,
 			);
-			path = utils;
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		4DF4E77B2BECFEA900AD1E78 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4DF4E77A2BECFEA900AD1E78 /* Media.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,7 +383,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DA7F0292BD7AE4800F51547 /* Media.xcassets in Resources */,
+				4DF4E77C2BECFEA900AD1E78 /* Media.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +441,7 @@
 				4D0E6EE72BE0DD6800D7EE5A /* HttpClient.swift in Sources */,
 				4D65040B2BE268A3000AEFD7 /* GuardianClient.swift in Sources */,
 				4DA7EFD72BD6A08800F51547 /* CardNumberFormatter.swift in Sources */,
+				4D0EE66D2BED019F004849DA /* Bundle.swift in Sources */,
 				4D5A48412BDFAC9700E27E6B /* AdditionalFieldsView.swift in Sources */,
 				4D65040D2BE2697E000AEFD7 /* SessionCompleteTokenizeCard.swift in Sources */,
 				4DA140F22BDF8240004045B1 /* ExpiryDateFormatter.swift in Sources */,
