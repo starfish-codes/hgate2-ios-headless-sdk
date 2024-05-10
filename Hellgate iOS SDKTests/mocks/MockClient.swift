@@ -1,3 +1,4 @@
+import Foundation
 @testable import Hellgate_iOS_SDK
 
 class MockClient: HttpClientSession {

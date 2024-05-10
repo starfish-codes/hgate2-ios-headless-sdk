@@ -17,7 +17,8 @@ let package = Package(
     targets: [
         .target(
             name: "Hellgate-iOS-SDK",
-            path: "./Hellgate iOS SDK/"
+            path: "./Hellgate iOS SDK/",
+            resources: [.copy("Resources/PrivacyInfo.xcprivacy")]
         ),
         .testTarget(
             name: "Hellgate-iOS-SDKTests",

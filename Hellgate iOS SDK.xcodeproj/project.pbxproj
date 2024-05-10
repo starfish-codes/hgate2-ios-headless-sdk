@@ -117,6 +117,7 @@
 		4DA7F02E2BD936CC00F51547 /* CardBrand+BrandDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardBrand+BrandDetails.swift"; sourceTree = "<group>"; };
 		4DD5D4DE2BEA23AB0004291A /* GuardianClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianClientTests.swift; sourceTree = "<group>"; };
 		4DF4E77A2BECFEA900AD1E78 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		4DFDD0722BEE2FA00016F14D /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				4DF4E77A2BECFEA900AD1E78 /* Media.xcassets */,
+				4DFDD0722BEE2FA00016F14D /* PrivacyInfo.xcprivacy */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
