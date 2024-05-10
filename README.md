@@ -14,7 +14,16 @@ pod 'Hellgate-iOS-SDK'
 
 ### Carthage
 
-TODO
+1. Add the following line to your `Cartfile`:
+```Cartfile
+github "starfish-codes/hgate2-ios-headless-sdk"
+```
+
+2. Run in same directory as your `Cartfile`:
+```sh
+$ carthage update --use-xcframeworks
+```
+3. Add the built XCFrameworks to your project under "Frameworks and Libraries"
 
 ### Swift Package Manager
 
@@ -66,7 +75,7 @@ The `ViewStates` can help to determine how the user is progressing in filling ou
 
 First we have to initialize a Hellgate session using the `sessionId` delivered from your backend.
 ```swift
-let hellgate = await initHellgate(baseUrl: Self.sandboxURL, sessionId: sessionId)
+let hellgate = await initHellgate(baseUrl: hellgateURL, sessionId: sessionId)
 ```
 
 Next we need to get a card handler from the Hellgate session and then we can try and tokenize the card details based on the view states previously defined in the UI.
