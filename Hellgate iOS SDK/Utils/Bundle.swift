@@ -5,6 +5,9 @@ private class BundleFinder {}
 extension Bundle {
     static let hellgateModule: Bundle? = {
 
+        // Cocoapods bundle is set to `HellgateBundle`
+        // SPM automatically names the bundle `Hellgate-iOS-SDK_Hellgate-iOS-SDK`
+        // We could use .module but it won't be available for other package systems
         let bundleNames = ["HellgateBundle", "Hellgate-iOS-SDK_Hellgate-iOS-SDK"]
 
         let candidates = [
@@ -22,18 +25,12 @@ extension Bundle {
             for candidate in candidates {
                 let bundlePath = candidate?.appendingPathComponent(bundleName + ".bundle")
                 if let bundle = bundlePath.flatMap(Bundle.init(url:)) {
-                    print("*** Found one ***")
-                    print(bundle.bundlePath)
-                    print(bundle.resourcePath ?? "no resource path")
                     return bundle
                 }
             }
         }
 
-        print("&&& Last resort &&&")
-        let bundle = Bundle(for: BundleFinder.self)
-        print(bundle.bundlePath)
-        print(bundle.resourcePath ?? "no resource path")
-        return bundle
+        // Carthage builds the assets into the .framework
+        return Bundle(for: BundleFinder.self)
     }()
 }
