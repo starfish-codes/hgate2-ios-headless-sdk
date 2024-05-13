@@ -60,8 +60,8 @@ struct ExTokenizeRequest: Encodable {
         enum CodingKeys: String, CodingKey {
             case expiryMonth = "expiry_month"
             case expiryYear = "expiry_year"
-            case accountNumber = "account_number"
-            case securityCode = "issuer_identification_number"
+            case accountNumber = "number"
+            case securityCode = "cvc"
         }
 
         init?(cardData: CardData) {
