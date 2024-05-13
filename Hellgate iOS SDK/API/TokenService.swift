@@ -1,3 +1,5 @@
+import Foundation
+
 protocol TokenServiceProvider {
     func tokenize(
         sessionId: String,

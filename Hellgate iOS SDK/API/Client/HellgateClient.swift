@@ -1,3 +1,5 @@
+import Foundation
+
 protocol HellgateClientAPI {
     func sessionStatus(
         sessionId: String

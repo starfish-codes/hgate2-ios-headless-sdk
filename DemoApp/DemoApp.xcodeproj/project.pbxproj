@@ -15,8 +15,8 @@
 		4DA7EFF62BD6A30000F51547 /* DemoAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7EFF52BD6A30000F51547 /* DemoAppTests.swift */; };
 		4DA7F0002BD6A30000F51547 /* DemoAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7EFFF2BD6A30000F51547 /* DemoAppUITests.swift */; };
 		4DA7F0022BD6A30000F51547 /* DemoAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7F0012BD6A30000F51547 /* DemoAppUITestsLaunchTests.swift */; };
-		4DA7F01C2BD6A31B00F51547 /* Hellgate_iOS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DA7F01B2BD6A31B00F51547 /* Hellgate_iOS_SDK.framework */; };
-		4DA7F01D2BD6A31B00F51547 /* Hellgate_iOS_SDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4DA7F01B2BD6A31B00F51547 /* Hellgate_iOS_SDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4DCE5A912BECE4F800F784DB /* Hellgate_iOS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DCE5A902BECE4F800F784DB /* Hellgate_iOS_SDK.framework */; };
+		4DCE5A922BECE4F800F784DB /* Hellgate_iOS_SDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4DCE5A902BECE4F800F784DB /* Hellgate_iOS_SDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,13 +37,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		4DA7F01E2BD6A31B00F51547 /* Embed Frameworks */ = {
+		4DCE5A932BECE4F800F784DB /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4DA7F01D2BD6A31B00F51547 /* Hellgate_iOS_SDK.framework in Embed Frameworks */,
+				4DCE5A922BECE4F800F784DB /* Hellgate_iOS_SDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,6 +63,7 @@
 		4DA7EFFF2BD6A30000F51547 /* DemoAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoAppUITests.swift; sourceTree = "<group>"; };
 		4DA7F0012BD6A30000F51547 /* DemoAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		4DA7F01B2BD6A31B00F51547 /* Hellgate_iOS_SDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Hellgate_iOS_SDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4DCE5A902BECE4F800F784DB /* Hellgate_iOS_SDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Hellgate_iOS_SDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DA7F01C2BD6A31B00F51547 /* Hellgate_iOS_SDK.framework in Frameworks */,
+				4DCE5A912BECE4F800F784DB /* Hellgate_iOS_SDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +153,7 @@
 		4DA7F01A2BD6A31B00F51547 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4DCE5A902BECE4F800F784DB /* Hellgate_iOS_SDK.framework */,
 				4DA7F01B2BD6A31B00F51547 /* Hellgate_iOS_SDK.framework */,
 			);
 			name = Frameworks;
@@ -167,7 +169,7 @@
 				4DA7EFDD2BD6A2FF00F51547 /* Sources */,
 				4DA7EFDE2BD6A2FF00F51547 /* Frameworks */,
 				4DA7EFDF2BD6A2FF00F51547 /* Resources */,
-				4DA7F01E2BD6A31B00F51547 /* Embed Frameworks */,
+				4DCE5A932BECE4F800F784DB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
