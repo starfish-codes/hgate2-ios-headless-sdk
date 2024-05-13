@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
     s.version                        = '1.0.0'
   
     s.summary                        = 'Tokenize card details using starfish team\'s Hellgate.'
-    s.license                        = { :type => 'MIT', :file => 'LICENSE' }
+    s.license                        = { :type => 'Apache 2.0', :file => 'LICENSE' }
     s.homepage                       = 'https://starfish.team'
     s.authors                        = { 'Hellgate' => 'hellgate@starfish.team' }
     s.source                         = { :git => 'https://github.com/starfish-codes/hgate2-ios-headless-sdk.git', :branch => "main" }
