@@ -23,7 +23,6 @@ final class ExpiryDateViewViewModelTests: XCTestCase {
 
         return (ExpiryDateViewViewModel(
             viewState: binding,
-            value: "",
             currentDate: date,
             queue: queue
         ),

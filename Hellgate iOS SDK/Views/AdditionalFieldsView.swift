@@ -78,12 +78,15 @@ extension AdditionalFieldsView {
 #Preview {
 
     return ScrollView {
-        Text("Default")
-        AdditionalFieldsView(type: .CARDHOLDER_NAME)
+        VStack {
+            Text("Default")
+            AdditionalFieldsView(type: .CARDHOLDER_NAME)
 
-        Text("Border applied")
-        AdditionalFieldsView(type: .CARDHOLDER_NAME)
-            .border()
+            Text("Border applied")
+            AdditionalFieldsView(type: .CARDHOLDER_NAME)
+                .border()
+        }
+        .padding()
     }
 }
 

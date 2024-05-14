@@ -16,7 +16,6 @@ final class CardNumberViewTests: XCTestCase {
 
         return (CardNumberViewViewModel(
             viewState: binding,
-            value: "",
             cardBrand: .unknown,
             queue: queue
         ),

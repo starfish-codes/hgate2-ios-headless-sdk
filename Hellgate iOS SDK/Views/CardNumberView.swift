@@ -24,11 +24,10 @@ public class CardNumberViewViewModel: ObservableObject {
 
     public init(
         viewState: Binding<ViewState>,
-        value: String,
         cardBrand: CardBrand,
         queue: DispatchQueue = .main
     ) {
-        self.value = value
+        self.value = viewState.wrappedValue.value
         self.cardBrand = cardBrand
         self.queue = queue
         self._viewState = viewState
@@ -112,7 +111,6 @@ public struct CardNumberView: View {
         self._viewModel = StateObject(
             wrappedValue: CardNumberViewViewModel(
                 viewState: viewState,
-                value: "",
                 cardBrand: .unknown
             )
         )
@@ -175,42 +173,54 @@ extension CardNumberView {
     var viewState = ViewState(state: .blank)
     let viewStateBind = Binding { viewState } set: { state in viewState = state }
 
+    var invalidState = ViewState(state: .blank, value: "3900000023223232")
+    let invalidStateBind = Binding { invalidState } set: { state in invalidState = state }
+
+    var completeState = ViewState(state: .blank, value: "4242424242424242")
+    let completeStateBind = Binding { completeState } set: { state in completeState = state }
+
     return ScrollView {
-        Text("Default")
-        CardNumberView(
-            viewState: viewStateBind,
-            image: .leading
-        )
+        VStack {
+            CardNumberView(
+                viewState: viewStateBind,
+                image: .leading
+            )
+            .border()
 
-        CardNumberView(
-            viewState: viewStateBind,
-            image: .trailing
-        )
+            CardNumberView(
+                viewState: viewStateBind,
+                image: .trailing
+            )
+            .border()
 
-        CardNumberView(
-            viewState: viewStateBind,
-            image: .hidden
-        )
+            CardNumberView(
+                viewState: viewStateBind,
+                image: .hidden
+            )
+            .border()
+        }
+        .padding()
 
-        Text("Border applied")
+        VStack {
+            CardNumberView(
+                viewState: viewStateBind,
+                image: .leading
+            )
+            .border()
 
-        CardNumberView(
-            viewState: viewStateBind,
-            image: .leading
-        )
-        .border()
+            CardNumberView(
+                viewState: invalidStateBind,
+                image: .trailing
+            )
+            .border()
 
-        CardNumberView(
-            viewState: viewStateBind,
-            image: .trailing
-        )
-        .border()
-
-        CardNumberView(
-            viewState: viewStateBind,
-            image: .hidden
-        )
-        .border()
+            CardNumberView(
+                viewState: completeStateBind,
+                image: .hidden
+            )
+            .border()
+        }
+        .padding()
     }
 }
 

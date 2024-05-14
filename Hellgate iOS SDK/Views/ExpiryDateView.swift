@@ -23,12 +23,11 @@ public class ExpiryDateViewViewModel: ObservableObject {
 
     public init(
         viewState: Binding<ViewState>,
-        value: String,
         currentDate: Date = .now,
         queue: DispatchQueue = .main
     ) {
         self._viewState = viewState
-        self.value = value
+        self.value = viewState.wrappedValue.value
         self.currentDate = currentDate
         self.queue = queue
 
@@ -84,8 +83,9 @@ public class ExpiryDateViewViewModel: ObservableObject {
     }
 }
 
-public struct ExpiryDateField: View {
+public struct ExpiryDateView: View {
     @StateObject var viewModel: ExpiryDateViewViewModel
+
     let padding: CGFloat
 
     let onBegin: (() -> Void)?
@@ -98,10 +98,7 @@ public struct ExpiryDateField: View {
         onEnd: (() -> Void)? = nil
     ) {
         self._viewModel = StateObject(
-            wrappedValue: ExpiryDateViewViewModel(
-                viewState: viewState,
-                value: ""
-            )
+            wrappedValue: ExpiryDateViewViewModel(viewState: viewState)
         )
         self.padding = padding
         self.onBegin = onBegin
@@ -125,7 +122,7 @@ public struct ExpiryDateField: View {
     }
 }
 
-extension ExpiryDateField {
+extension ExpiryDateView {
     public func border() -> some View {
         self
             .overlay(
@@ -139,21 +136,33 @@ extension ExpiryDateField {
 
 #Preview {
 
-    var defaultState = ViewState(state: .blank)
+    var defaultState = ViewState(state: .complete, value: "")
     let defaultStateBind = Binding { defaultState } set: { state in defaultState = state }
 
+    var invalidState = ViewState(state: .complete, value: "1223")
+    let invalidStateBind = Binding { invalidState } set: { state in invalidState = state }
+
+    var completeState = ViewState(state: .complete, value: "1230")
+    let completeStateBind = Binding { completeState } set: { state in completeState = state }
+
     return ScrollView {
-        Text("Default")
-        ExpiryDateField(
-            viewState: defaultStateBind
-        )
+        VStack {
+            ExpiryDateView(
+                viewState: defaultStateBind
+            )
+            .border()
 
-        Text("Border applied")
+            ExpiryDateView(
+                viewState: invalidStateBind
+            )
+            .border()
 
-        ExpiryDateField(
-            viewState: defaultStateBind
-        )
-        .border()
+            ExpiryDateView(
+                viewState: completeStateBind
+            )
+            .border()
+        }
+        .padding()
     }
 }
 

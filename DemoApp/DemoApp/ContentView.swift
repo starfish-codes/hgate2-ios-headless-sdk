@@ -49,7 +49,7 @@ struct ContentView: View {
                             )
                             .border()
 
-                            ExpiryDateField(viewState: $viewModel.expiryViewState)
+                            ExpiryDateView(viewState: $viewModel.expiryViewState)
                                 .border()
 
                             CvcView(viewState: $viewModel.cvcViewState, length: .cvc)
