@@ -4,8 +4,8 @@ Pod::Spec.new do |s|
   
     s.summary                        = 'Tokenize card details using starfish team\'s Hellgate.'
     s.license                        = { :type => 'Apache 2.0', :file => 'LICENSE' }
-    s.homepage                       = 'https://starfish.team'
-    s.authors                        = { 'Hellgate' => 'hellgate@starfish.team' }
+    s.homepage                       = 'https://hellgate.io/'
+    s.authors                        = { 'starfish.team' => 'hellgate.products@starfish.team' }
     s.source                         = { :git => 'https://github.com/starfish-codes/hgate2-ios-headless-sdk.git', :branch => "main" }
     s.frameworks                     = 'Foundation', 'UIKit'
     s.requires_arc                   = true
