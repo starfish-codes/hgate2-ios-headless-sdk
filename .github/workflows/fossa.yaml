@@ -1,0 +1,15 @@
+name: FOSSA
+
+on:
+  pull_request:
+    branches: [ "main", "feature/**", "develop", "hotfix/**" ]
+
+jobs:
+  fossa-scan:
+    name: 👮‍ License checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: fossas/fossa-action@main # Use a specific version if locking is preferred
+        with:
+          api-key: ${{secrets.fossaApiKey}}
