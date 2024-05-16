@@ -46,7 +46,7 @@ CardNumberView(viewState: $viewModel.cardNumberViewState, image: .leading)
     .border()
 
 // Expiry date field, validation state
-ExpiryDateField(viewState: $viewModel.expiryViewState)
+ExpiryDateView(viewState: $viewModel.expiryViewState)
     .border()
 
 // CVC and CVV view with view state and max length either .cvc or .cvv

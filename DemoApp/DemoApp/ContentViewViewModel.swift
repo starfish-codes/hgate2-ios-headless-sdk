@@ -13,7 +13,7 @@ class ContentViewViewModel: ObservableObject {
     @Published var expiryViewState = ViewState(state: .blank)
     @Published var cvcViewState = ViewState(state: .blank)
 
-    @Published var secretKey = "sk_sndbx_AZhTZM8yTJ39D3fDtZI"
+    @Published var secretKey = "<GET SECRET KEY FROM HELLGATE>"
     @Published var sessionId = ""
     @Published var sessionState: SessionState?
     @Published var token: String?
