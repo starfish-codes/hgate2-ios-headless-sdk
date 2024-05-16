@@ -55,6 +55,9 @@ struct ContentView: View {
                             CvcView(viewState: $viewModel.cvcViewState, length: .cvc)
                                 .border()
 
+                            AdditionalFieldsView(type: .CARDHOLDER_NAME, viewState: $viewModel.cardholderViewState)
+                                .border()
+
                             Button("Tokenize") {
                                 Task {
                                     await viewModel.tokenize()

@@ -37,12 +37,11 @@ public class CvcViewViewModel: ObservableObject {
 
     public init(
         viewState: Binding<ViewState>,
-        value: String,
         length: Cvc,
         queue: DispatchQueue = .main
     ) {
         self._viewState = viewState
-        self.value = value
+        self.value = viewState.wrappedValue.value
         self.length = length.rawValue
         self.queue = queue
         self.placeholder = length.placeholder
@@ -94,7 +93,6 @@ public struct CvcView: View {
         self._viewModel = StateObject(
             wrappedValue: CvcViewViewModel(
                 viewState: viewState,
-                value: "",
                 length: length
             )
         )
@@ -137,6 +135,12 @@ extension CvcView {
     var defaultState = ViewState(state: .blank)
     let defaultStateBind = Binding { defaultState } set: { state in defaultState = state }
 
+    var filledState = ViewState(state: .complete, value: "123")
+    let filledStateBind = Binding { filledState } set: { state in filledState = state }
+
+    var filledState2 = ViewState(state: .complete, value: "1234")
+    let filledStateBind2 = Binding { filledState2 } set: { state in filledState2 = state }
+
     return ScrollView {
         Text("Default")
         CvcView(
@@ -152,17 +156,18 @@ extension CvcView {
         Text("Border applied")
 
         CvcView(
-            viewState: defaultStateBind,
+            viewState: filledStateBind,
             length: .cvc
         )
         .border()
 
         CvcView(
-            viewState: defaultStateBind,
+            viewState: filledStateBind2,
             length: .cvv
         )
         .border()
     }
+    .padding()
 }
 
 #endif

@@ -134,6 +134,7 @@ public struct WrappedUITextField: UIViewRepresentable {
 #endif
 
             guard let formatter = self.formatter else {
+                value = changedFormattedText
                 return true
             }
 

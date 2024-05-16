@@ -25,9 +25,46 @@ public enum AdditionalFieldType: String {
     }
 }
 
+public class AdditionalFieldsViewModel: ObservableObject {
+    @Binding var viewState: ViewState
+    @Published var value: String = ""
+    let placeholder: String
+    private let queue: DispatchQueue
+
+    var cancellable: AnyCancellable?
+
+    public init(
+        type: AdditionalFieldType,
+        viewState: Binding<ViewState>,
+        queue: DispatchQueue = .main
+    ) {
+        self._viewState = viewState
+        self.value = viewState.wrappedValue.value
+        self.queue = queue
+        self.placeholder = type.label
+
+        cancellable = self.$value
+            .sink { [weak self] newValue in
+                self?.update(value: newValue)
+            }
+    }
+
+    private func update(value: String) {
+        queue.async { [weak self] in
+            guard let self = self else { return }
+
+            self.viewState = self.state(value: value)
+        }
+    }
+
+    private func state(value: String) -> ViewState {
+        guard !value.isEmpty else { return ViewState(state: .blank, value: value) }
+        return ViewState(state: .complete, value: value)
+    }
+}
+
 public struct AdditionalFieldsView: View {
-    let type: AdditionalFieldType
-    @State var text: String
+    @StateObject var viewModel: AdditionalFieldsViewModel
     let padding: CGFloat
 
     let onBegin: (() -> Void)?
@@ -35,12 +72,12 @@ public struct AdditionalFieldsView: View {
 
     public init(
         type: AdditionalFieldType,
+        viewState: Binding<ViewState>,
         padding: CGFloat = 0,
         onBegin: (() -> Void)? = nil,
         onEnd: (() -> Void)? = nil
     ) {
-        self.type = type
-        self.text = ""
+        self._viewModel = StateObject(wrappedValue: AdditionalFieldsViewModel(type: type, viewState: viewState))
         self.padding = padding
         self.onBegin = onBegin
         self.onEnd = onEnd
@@ -48,8 +85,8 @@ public struct AdditionalFieldsView: View {
 
     public var body: some View {
         WrappedUITextField(
-            value: $text,
-            placeholder: type.label,
+            value: $viewModel.value,
+            placeholder: viewModel.placeholder,
             fontSize: 16,
             foregroundColor: .black,
             backgroundColor: .white,
@@ -77,13 +114,22 @@ extension AdditionalFieldsView {
 
 #Preview {
 
+    var defaultState = ViewState(state: .blank)
+    let defaultStateBind = Binding { defaultState } set: { state in defaultState = state }
+
     return ScrollView {
         VStack {
             Text("Default")
-            AdditionalFieldsView(type: .CARDHOLDER_NAME)
+            AdditionalFieldsView(
+                type: .CARDHOLDER_NAME,
+                viewState: defaultStateBind
+            )
 
             Text("Border applied")
-            AdditionalFieldsView(type: .CARDHOLDER_NAME)
+            AdditionalFieldsView(
+                type: .CARDHOLDER_NAME,
+                viewState: defaultStateBind
+            )
                 .border()
         }
         .padding()

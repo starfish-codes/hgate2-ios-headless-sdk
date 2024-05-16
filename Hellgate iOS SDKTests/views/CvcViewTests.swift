@@ -16,7 +16,6 @@ final class CvcViewModelTests: XCTestCase {
 
         return (CvcViewViewModel(
             viewState: binding,
-            value: "",
             length: length,
             queue: queue
         ),

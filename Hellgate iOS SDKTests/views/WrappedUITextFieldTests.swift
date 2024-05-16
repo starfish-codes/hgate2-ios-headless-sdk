@@ -89,4 +89,30 @@ final class WrappedUITextFieldTests: XCTestCase {
         XCTAssertEqual(value, "1123")
     }
 
+    func test_Given_NoFormatter_When_ReceiveChanges_Then_UpdateValue() throws {
+        var value = ""
+        let valueBind = Binding {
+            value
+        } set: { newValue in
+            value = newValue
+        }
+
+        let wrapped = WrappedUITextField(
+            value: valueBind,
+            placeholder: "",
+            formatter: nil
+        )
+
+        let coordinator = wrapped.makeCoordinator()
+        let textfield = UITextField()
+        textfield.text = "123"
+
+        _ = coordinator.textField(
+            textfield,
+            shouldChangeCharactersIn: NSRange(location: 0, length: 0),
+            replacementString: "1"
+        )
+
+        XCTAssertEqual(value, "1123")
+    }
 }

@@ -12,8 +12,9 @@ class ContentViewViewModel: ObservableObject {
     @Published var cardNumberViewState = ViewState(state: .blank)
     @Published var expiryViewState = ViewState(state: .blank)
     @Published var cvcViewState = ViewState(state: .blank)
+    @Published var cardholderViewState = ViewState(state: .blank)
 
-    @Published var secretKey = "<GET SECRET KEY FROM HELLGATE>"
+    @Published var secretKey = "sk_sndbx_AZhTZM8yTJ39D3fDtZI"
     @Published var sessionId = ""
     @Published var sessionState: SessionState?
     @Published var token: String?
@@ -24,7 +25,8 @@ class ContentViewViewModel: ObservableObject {
         !sessionId.isEmpty &&
         cardNumberViewState.state == .complete &&
         expiryViewState.state == .complete &&
-        cvcViewState.state == .complete
+        cvcViewState.state == .complete &&
+        cardholderViewState.state == .complete
     }
 
     // This called needs to be performed on your backend servers
@@ -83,7 +85,7 @@ class ContentViewViewModel: ObservableObject {
                 cardNumberViewState,
                 cvcViewState,
                 expiryViewState,
-                [:]
+                [.CARDHOLDER_NAME: cardholderViewState]
             )
 
             print(response)
