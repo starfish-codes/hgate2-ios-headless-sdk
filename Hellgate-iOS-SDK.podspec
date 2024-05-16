@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
     s.license                        = { :type => 'Apache 2.0', :file => 'LICENSE' }
     s.homepage                       = 'https://hellgate.io/'
     s.authors                        = { 'starfish.team' => 'hellgate.products@starfish.team' }
-    s.source                         = { :git => 'https://github.com/starfish-codes/hgate2-ios-headless-sdk.git', :branch => "main" }
+    s.source                         = { :git => 'https://github.com/starfish-codes/hgate2-ios-headless-sdk.git', :tag => "1.0.0" }
     s.frameworks                     = 'Foundation', 'UIKit'
     s.requires_arc                   = true
     s.platform                       = :ios
