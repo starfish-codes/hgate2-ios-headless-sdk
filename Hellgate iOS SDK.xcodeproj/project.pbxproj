@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17DE380A2DCB461B00B14795 /* JOSESwift in Frameworks */ = {isa = PBXBuildFile; productRef = 17DE38092DCB461B00B14795 /* JOSESwift */; };
 		4D0E6EE72BE0DD6800D7EE5A /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0E6EE62BE0DD6800D7EE5A /* HttpClient.swift */; };
 		4D0E6EEB2BE2567000D7EE5A /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0E6EEA2BE2567000D7EE5A /* ViewState.swift */; };
 		4D0EE66D2BED019F004849DA /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0EE66C2BED019F004849DA /* Bundle.swift */; };
@@ -34,7 +35,6 @@
 		4D6504042BE260B7000AEFD7 /* TokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6504032BE260B7000AEFD7 /* TokenService.swift */; };
 		4D6504062BE263D0000AEFD7 /* InvalidSessionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6504052BE263D0000AEFD7 /* InvalidSessionState.swift */; };
 		4D6504082BE26617000AEFD7 /* HellgateClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6504072BE26617000AEFD7 /* HellgateClient.swift */; };
-		4D65040B2BE268A3000AEFD7 /* GuardianClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D65040A2BE268A3000AEFD7 /* GuardianClient.swift */; };
 		4D65040D2BE2697E000AEFD7 /* SessionCompleteTokenizeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D65040C2BE2697E000AEFD7 /* SessionCompleteTokenizeCard.swift */; };
 		4D65040F2BE27C22000AEFD7 /* ExTokenizeClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D65040E2BE27C22000AEFD7 /* ExTokenizeClient.swift */; };
 		4DA140F02BDF7E40004045B1 /* ExpiryDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA140EF2BDF7E40004045B1 /* ExpiryDateView.swift */; };
@@ -54,7 +54,6 @@
 		4DA7F02D2BD7D83D00F51547 /* CardBrandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7F02C2BD7D83D00F51547 /* CardBrandTests.swift */; };
 		4DA7F02F2BD936CC00F51547 /* CardBrand+BrandDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA7F02E2BD936CC00F51547 /* CardBrand+BrandDetails.swift */; };
 		4DC2E8BA2BF60BD000216B0D /* AdditionalFieldsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC2E8B92BF60BD000216B0D /* AdditionalFieldsTests.swift */; };
-		4DD5D4DF2BEA23AB0004291A /* GuardianClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD5D4DE2BEA23AB0004291A /* GuardianClientTests.swift */; };
 		4DF4E77C2BECFEA900AD1E78 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DF4E77A2BECFEA900AD1E78 /* Media.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -96,7 +95,6 @@
 		4D6504032BE260B7000AEFD7 /* TokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenService.swift; sourceTree = "<group>"; };
 		4D6504052BE263D0000AEFD7 /* InvalidSessionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvalidSessionState.swift; sourceTree = "<group>"; };
 		4D6504072BE26617000AEFD7 /* HellgateClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HellgateClient.swift; sourceTree = "<group>"; };
-		4D65040A2BE268A3000AEFD7 /* GuardianClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianClient.swift; sourceTree = "<group>"; };
 		4D65040C2BE2697E000AEFD7 /* SessionCompleteTokenizeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCompleteTokenizeCard.swift; sourceTree = "<group>"; };
 		4D65040E2BE27C22000AEFD7 /* ExTokenizeClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExTokenizeClient.swift; sourceTree = "<group>"; };
 		4DA140EF2BDF7E40004045B1 /* ExpiryDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpiryDateView.swift; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 		4DA7F02C2BD7D83D00F51547 /* CardBrandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBrandTests.swift; sourceTree = "<group>"; };
 		4DA7F02E2BD936CC00F51547 /* CardBrand+BrandDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardBrand+BrandDetails.swift"; sourceTree = "<group>"; };
 		4DC2E8B92BF60BD000216B0D /* AdditionalFieldsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalFieldsTests.swift; sourceTree = "<group>"; };
-		4DD5D4DE2BEA23AB0004291A /* GuardianClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianClientTests.swift; sourceTree = "<group>"; };
 		4DF4E77A2BECFEA900AD1E78 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		4DFDD0722BEE2FA00016F14D /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -127,6 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17DE380A2DCB461B00B14795 /* JOSESwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,7 +169,6 @@
 				4D43B17E2BE375FA006B58B6 /* HellgateTests.swift */,
 				4D2D4AAB2BE4BE670015557F /* HellgateClientTests.swift */,
 				4D153AD72BE4D0A90007603D /* TokenServiceTests.swift */,
-				4DD5D4DE2BEA23AB0004291A /* GuardianClientTests.swift */,
 				4D26303F2BEB88B7006A2E7D /* ExTokenizeClientTests.swift */,
 				4D2630432BEB8E23006A2E7D /* CardHandlerTests.swift */,
 			);
@@ -210,7 +207,6 @@
 			children = (
 				4D0E6EE62BE0DD6800D7EE5A /* HttpClient.swift */,
 				4D6504072BE26617000AEFD7 /* HellgateClient.swift */,
-				4D65040A2BE268A3000AEFD7 /* GuardianClient.swift */,
 				4D65040E2BE27C22000AEFD7 /* ExTokenizeClient.swift */,
 			);
 			path = client;
@@ -373,6 +369,9 @@
 				Base,
 			);
 			mainGroup = 4DA7EFAF2BD6995A00F51547;
+			packageReferences = (
+				17DE38082DCB461B00B14795 /* XCRemoteSwiftPackageReference "JOSESwift" */,
+			);
 			productRefGroup = 4DA7EFBA2BD6995B00F51547 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -444,7 +443,6 @@
 				4D5A48392BDF9C5E00E27E6B /* CvcView.swift in Sources */,
 				4D5A48442BDFB39200E27E6B /* Hellgate.swift in Sources */,
 				4D0E6EE72BE0DD6800D7EE5A /* HttpClient.swift in Sources */,
-				4D65040B2BE268A3000AEFD7 /* GuardianClient.swift in Sources */,
 				4DA7EFD72BD6A08800F51547 /* CardNumberFormatter.swift in Sources */,
 				4D0EE66D2BED019F004849DA /* Bundle.swift in Sources */,
 				4D5A48412BDFAC9700E27E6B /* AdditionalFieldsView.swift in Sources */,
@@ -465,7 +463,6 @@
 				4D2D4AAC2BE4BE670015557F /* HellgateClientTests.swift in Sources */,
 				4D2630422BEB8AB8006A2E7D /* MockHellgateClient.swift in Sources */,
 				4DA7F0232BD6B17A00F51547 /* CardUtilsTests.swift in Sources */,
-				4DD5D4DF2BEA23AB0004291A /* GuardianClientTests.swift in Sources */,
 				4D2630462BEB909E006A2E7D /* MockTokenService.swift in Sources */,
 				4D54F8422BDBBBEB00CC048C /* WrappedUITextFieldTests.swift in Sources */,
 				4DA140F62BDF8E1C004045B1 /* ExpiryDateFormatterTests.swift in Sources */,
@@ -757,6 +754,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		17DE38082DCB461B00B14795 /* XCRemoteSwiftPackageReference "JOSESwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airsidemobile/JOSESwift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		17DE38092DCB461B00B14795 /* JOSESwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 17DE38082DCB461B00B14795 /* XCRemoteSwiftPackageReference "JOSESwift" */;
+			productName = JOSESwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4DA7EFB02BD6995A00F51547 /* Project object */;
 }

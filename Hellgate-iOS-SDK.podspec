@@ -15,5 +15,7 @@ Pod::Spec.new do |s|
     s.weak_framework                 = 'SwiftUI'
     s.source_files                   = 'Hellgate iOS SDK/**/*.swift'
     s.ios.resource_bundle            = { 'HellgateBundle' => ['Hellgate iOS SDK/Resources/**/*.{lproj,png,xcassets}'] }
-
+    
+    # Add the dependency with an exact version
+    s.dependency 'JOSESwift', '3.0.0'
   end

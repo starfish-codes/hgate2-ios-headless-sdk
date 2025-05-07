@@ -10,6 +10,11 @@ protocol HellgateClientAPI {
         tokenId: String,
         additionalData: [AdditionalFieldType: String]
     ) async -> Result<SessionResponse, Error>
+
+    func completeTokenizeCard(
+        sessionId: String,
+        encryptedCardData: String
+    ) async -> Result<SessionResponse, Error>
 }
 
 class HellgateClient: HellgateClientAPI {
@@ -46,6 +51,21 @@ class HellgateClient: HellgateClientAPI {
                     cardholderName: additionalData[.CARDHOLDER_NAME]
                 )
             )
+        )
+        return await self.client.request(method: "POST", url: url, body: body, headers: [:])
+    }
+
+    func completeTokenizeCard(
+        sessionId: String,
+        encryptedCardData: String
+    ) async -> Result<SessionResponse, Error> {
+        var url = self.baseURL
+        url.appendPathComponent("sessions")
+        url.appendPathComponent(sessionId)
+        url.appendPathComponent("complete-action")
+
+        let body = SessionCompleteTokenizeCardEncrypted(
+            result: SessionCompleteTokenizeCardEncrypted.Result(encryptedPayload: encryptedCardData)
         )
         return await self.client.request(method: "POST", url: url, body: body, headers: [:])
     }

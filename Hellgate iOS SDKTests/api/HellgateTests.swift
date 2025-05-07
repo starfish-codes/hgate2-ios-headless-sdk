@@ -23,6 +23,8 @@ final class HellgateTests: XCTestCase {
             .success(.init(data: nil, nextAction: .tokenize_card, status: nil))
         } competeTokenizeCard: {
             .failure(FakeError.error)
+        } completeTokenizeCardEncrypted: {
+            .failure(FakeError.error)
         }
 
         let baseURL = URL(string:"https://api-reference.hellgate.io")!
@@ -39,6 +41,8 @@ final class HellgateTests: XCTestCase {
             .success(.init(data: nil, nextAction: .wait, status: nil))
         } competeTokenizeCard: {
             .failure(FakeError.error)
+        } completeTokenizeCardEncrypted: {
+            .failure(FakeError.error)
         }
 
         let baseURL = URL(string:"https://api-reference.hellgate.io")!
@@ -53,6 +57,8 @@ final class HellgateTests: XCTestCase {
         let mock = MockHellgateClient {
             .success(.init(data: nil, nextAction: nil, status: "success"))
         } competeTokenizeCard: {
+            .failure(FakeError.error)
+        } completeTokenizeCardEncrypted: {
             .failure(FakeError.error)
         }
 
@@ -70,6 +76,8 @@ final class HellgateTests: XCTestCase {
             .success(.init(data: nil, nextAction: nil, status: nil))
         } competeTokenizeCard: {
             .failure(FakeError.error)
+        } completeTokenizeCardEncrypted: {
+            .failure(FakeError.error)
         }
 
         let baseURL = URL(string:"https://api-reference.hellgate.io")!
@@ -86,6 +94,8 @@ final class HellgateTests: XCTestCase {
             .failure(FakeError.error)
         } competeTokenizeCard: {
             .failure(FakeError.error)
+        } completeTokenizeCardEncrypted: {
+            .failure(FakeError.error)
         }
 
         let baseURL = URL(string:"https://api-reference.hellgate.io")!
@@ -101,6 +111,8 @@ final class HellgateTests: XCTestCase {
         let mock = MockHellgateClient {
             .success(.init(data: nil, nextAction: .tokenize_card, status: nil))
         } competeTokenizeCard: {
+            .failure(FakeError.error)
+        } completeTokenizeCardEncrypted: {
             .failure(FakeError.error)
         }
 
@@ -120,6 +132,8 @@ final class HellgateTests: XCTestCase {
         let mock = MockHellgateClient {
             .success(.init(data: nil, nextAction: nil, status: "UNKNOWN"))
         } competeTokenizeCard: {
+            .failure(FakeError.error)
+        } completeTokenizeCardEncrypted: {
             .failure(FakeError.error)
         }
 

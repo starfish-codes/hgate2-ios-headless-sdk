@@ -14,9 +14,13 @@ let package = Package(
             targets: ["Hellgate-iOS-SDK"]
         )
     ],
+    dependencies: [
+        .package(url: "https://github.com/airsidemobile/JOSESwift.git", .exact("3.0.0"))
+    ],
     targets: [
         .target(
             name: "Hellgate-iOS-SDK",
+            dependencies: ["JOSESwift"],
             path: "./Hellgate iOS SDK/",
             resources: [.copy("Resources/PrivacyInfo.xcprivacy")]
         ),
