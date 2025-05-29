@@ -16,12 +16,25 @@ struct SessionCompleteTokenizeCard: Encodable {
             case additionalData = "additional_data"
         }
     }
+}
 
-    struct AdditionalData: Encodable {
-        let cardholderName: String?
+struct SessionCompleteTokenizeCardEncrypted: Encodable {
+    let action: String = "tokenize_card"
+    let result: Result
+
+    struct Result: Encodable {
+        let encryptedPayload: String
 
         enum CodingKeys: String, CodingKey {
-            case cardholderName = "cardholder_name"
+            case encryptedPayload = "enc_payload"
         }
+    }
+}
+
+struct AdditionalData: Encodable {
+    let cardholderName: String?
+
+    enum CodingKeys: String, CodingKey {
+        case cardholderName = "cardholder_name"
     }
 }

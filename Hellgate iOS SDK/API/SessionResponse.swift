@@ -16,13 +16,21 @@ public struct SessionResponse: Decodable {
         let apiKey: String?
         let provider: Provider?
         let baseUrl: String?
+        let jwk: JWK?
 
         enum CodingKeys: String, CodingKey {
             case tokenId = "token_id"
             case apiKey = "api_key"
             case provider
             case baseUrl = "base_url"
+            case jwk = "jwk"
         }
+    }
+
+    struct JWK: Decodable {
+        let kty: String?
+        let n: String?
+        let e: String?
     }
 
     enum Provider: String, Decodable {
